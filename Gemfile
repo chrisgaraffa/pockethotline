@@ -18,6 +18,7 @@ gem 'twitter', '~> 7.0.0'
 gem 'stripe', '~> 1.5.24'
 gem 'unicorn'
 gem 'custom_configuration', '~> 0.0.2'
+gem 'mime-types', '~> 3'
 
 group :assets do
   #gem 'less'
