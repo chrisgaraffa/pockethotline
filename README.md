@@ -1,3 +1,29 @@
+# Intro from chrisgaraffa
+This repo is a fork of [the original](https://github.com/chap/pockethotline) which hasn't been updated in a few years.
+
+# Plans
+The items at the top are the most important, but the rest are going to happen in sort of random order.
+
+1. Upgrade to modern Ruby/Rails/Bootstrap/JavaScript
+2. Add tests
+3. Audit dependencies and security
+4. Create a GUI 'setup assistant' for new installs
+5. Add categories, tagging
+6. Convert at least some of the UI to VueJS, maybe
+7. Add call volume and detail reports
+8. Localize the interface
+9. Internationalize the interface
+10. Add switches for (some) features like Twitter and Stripe integration
+
+# Contributing
+There's a good chance that things will be changing rapidly, especially through December 2020/January 2021. Reach out if you'd like to help!
+
+
+The original README is below:
+
+---------------
+
+
 # What
 Pockethotline is a rails app that allows you to setup a "distributed hotline". This allows you to have a hotline number that is published and operators signup with their personal numbers. When someone calls the main number the operators will be called (depending on their on-call status) and connected to the main caller.
 
