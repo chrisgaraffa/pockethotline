@@ -3,7 +3,7 @@ class OncallSchedule < ActiveRecord::Base
   belongs_to :user
   belongs_to :account
 
-  scope :active_users, where('users.deleted_at is null').includes(:user)
+  scope :active_users, -> { where('users.deleted_at is null').includes(:user) }
 
   def to_abbrev
     options = {
