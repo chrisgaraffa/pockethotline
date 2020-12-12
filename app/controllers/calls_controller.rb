@@ -1,6 +1,6 @@
 class CallsController < ApplicationController
-  before_filter :require_login
-  # before_filter :require_admin
+  before_action :require_login
+  # before_action :require_admin
 
   def index
     @user = find_user

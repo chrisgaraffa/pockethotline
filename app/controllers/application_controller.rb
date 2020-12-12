@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include UrlHelper
   protect_from_forgery
-  before_filter :set_time_zone
+  before_action :set_time_zone
 
   private
 

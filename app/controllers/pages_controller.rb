@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :require_login, :only => [:dashboard]
+  before_action :require_login, :only => [:dashboard]
   
   def index
     @operators = User.available_to_take_calls(true)

@@ -1,6 +1,6 @@
 class OncallSchedulesController < ApplicationController
-  before_filter :require_login
-  before_filter :require_admin, :only => [:all]
+  before_action :require_login
+  before_action :require_admin, :only => [:all]
 
   def all
   end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_login, :except => [:set_password, :save_password, :apply, :apply_thanks, :create, :unsubscribe]
-  before_filter :require_admin, :only => [:index, :new, :destroy, :show, :approve]
+  before_action :require_login, :except => [:set_password, :save_password, :apply, :apply_thanks, :create, :unsubscribe]
+  before_action :require_admin, :only => [:index, :new, :destroy, :show, :approve]
 
   def index
     @users = User.order('name').active.includes(:oncall_schedules)

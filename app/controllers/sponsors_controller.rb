@@ -1,6 +1,6 @@
 class SponsorsController < ApplicationController
-  before_filter :require_sponsors_activation
-  before_filter :require_auth_token, :only => [:edit, :update]
+  before_action :require_sponsors_activation
+  before_action :require_auth_token, :only => [:edit, :update]
   force_ssl :only => [:new, :create]
 
   def index

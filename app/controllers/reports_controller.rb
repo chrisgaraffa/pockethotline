@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
-	before_filter :require_login
-  before_filter :require_admin
+	before_action :require_login
+  before_action :require_admin
 
   def index
   	@users = User.find([230, 237, 222, 234, 231, 232])
