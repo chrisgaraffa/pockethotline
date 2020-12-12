@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   def index
     @users = User.order('name').active.includes(:oncall_schedules)
     @users = @users.paginate(:page => params[:page])
+
+    @pendingUsers = User.pending
   end
 
   def edit

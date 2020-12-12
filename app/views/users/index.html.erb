@@ -1,8 +1,8 @@
-<% if @users.pending.any? %>
-  <h3><%= pluralize(@users.pending.length, 'Pending Operator')%></h3>
+<% if @pendingUsers.any? %>
+  <h3><%= pluralize(@pendingUsers.length, 'Pending Operator')%></h3>
   <table class="dashboard">
     <tbody>
-      <% @users.pending.each do |operator| %>
+      <% @pendingUsers.each do |operator| %>
         <tr>
           <td>
             <%= link_to operator.name, edit_user_path(operator) %><br />
