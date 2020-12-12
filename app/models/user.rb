@@ -1,3 +1,4 @@
+require 'bcrypt'
 class User < ActiveRecord::Base
   attr_accessor :password, :admin_creating_user, :user_applying, :user_updating_themselves, :skip_password_validation
 
@@ -165,9 +166,9 @@ class User < ActiveRecord::Base
   end
 
   def set_token
-    #self.token = BCrypt::Engine.generate_salt.parameterize
-    #while User.find_by_token(self.token)
-    #  self.token = BCrypt::Engine.generate_salt.parameterize
-    #end
+    self.token = BCrypt::Engine.generate_salt
+    while User.find_by_token(self.token)
+      self.token = BCrypt::Engine.generate_salt
+    end
   end
 end
