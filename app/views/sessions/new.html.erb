@@ -1,22 +1,17 @@
-<h1>Log in</h1>
-
-<%= form_for(:session, :url => sessions_url, :html => {'data-ajax' => false}) do |f| %>
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email %>
-    </div>
+<%= form_for(:session, :url => sessions_url, :html => {'data-ajax' => false, :class => 'col-sm-4 offset-sm-4 mt-5'}) do |f| %>
+  <h1>Log in</h1>
+  <div class="form-floating mb-3">
+    <%= f.text_field :email, :type => 'email', :class => 'form-control', 'placeholder' => 'you@domain.com' %>
+    <%= f.label :email %>
   </div>
 
-  <div class="control-group">
-    <%= f.label :password, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.password_field :password %>
-    </div>
+  <div class="form-floating mb-3">
+    <%= f.password_field :password, :class => 'form-control', 'placeholder' => 'Your Password' %>
+    <%= f.label :password %>
   </div>
 
   <div class="form-actions">
-    <p><%= f.submit "Log in", :class => 'btn btn-inverse' %></p>
+    <p><%= f.submit "Log in", :class => 'btn btn-primary' %></p>
     <p><%= link_to 'Forgot your password?', forgot_password_path %></p>
   </div>
 <% end %>
