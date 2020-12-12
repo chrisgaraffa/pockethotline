@@ -1,7 +1,7 @@
 class Activity < ActiveRecord::Base
   belongs_to :account
   belongs_to :user
-  has_many :comments, :order => 'created_at asc'
+  has_many :comments, -> { order ('created_at ASC') }
 
   validates_presence_of :body
   validates :body, :unique_in_the_last_five_seconds => true
