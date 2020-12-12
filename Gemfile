@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.0.0'
 gem 'rails', '3.2.16'
-gem 'jquery-rails', '~> 1.0.18'
+gem 'jquery-rails', '~> 3.1.3'
 gem 'pg', '~> 0.11.0'
 gem 'bcrypt-ruby', '~> 3.0.1', :require => 'bcrypt'
 gem 'phone-validator', '~> 0.0.2'
