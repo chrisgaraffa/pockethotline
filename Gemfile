@@ -1,28 +1,28 @@
 source 'http://rubygems.org'
 
-ruby '2.0.0'
-gem 'rails', '3.2.16'
-gem 'jquery-rails', '~> 1.0.18'
-gem 'pg', '~> 0.11.0'
-gem 'bcrypt-ruby', '~> 3.0.1', :require => 'bcrypt'
+ruby '2.7.2'
+gem 'rails', '~> 6.1.0'
+gem 'jquery-rails'
+gem 'pg', '~> 1.0'
+gem 'bcrypt-ruby'
 gem 'phone-validator', '~> 0.0.2'
-gem 'twilio-ruby', "~> 3.5.0"
-gem 'aws-s3', '~> 0.6.2', :require => 'aws/s3'
+gem 'twilio-ruby', "~> 5.45.0"
+gem 'aws-sdk-s3', '~> 1'
 gem 'paperclip', '~> 2.4.5'
 gem 'cocaine', '0.3.2' # required for paperclip version
-gem 'delayed_job', '3.0.5'
-gem 'delayed_job_active_record', '0.4.4'
-gem 'rails_autolink', '~> 1.0.4'
+gem 'delayed_job', '~> 4.1.9'
+gem 'delayed_job_active_record', '~> 4.1.5'
+gem 'rails_autolink'
 gem 'will_paginate', '~> 3.0.4'
-gem 'twitter', '~> 4.6.2'
+gem 'twitter', '~> 7.0.0'
 gem 'stripe', '~> 1.5.24'
 gem 'unicorn'
 gem 'custom_configuration', '~> 0.0.2'
 
 group :assets do
-  gem 'less', '~> 2.0.8'
-  gem 'sass-rails', "  ~> 3.2.3"
-  gem 'coffee-rails', "~> 3.2.1"
+  #gem 'less'
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier', '~> 1.1.0'
 end
 

@@ -37,4 +37,6 @@ PocketHotline::Application.configure do
   # Configure static asset server for tests with Cache-Control for performance
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=3600"
+
+  config.eager_load = false
 end
