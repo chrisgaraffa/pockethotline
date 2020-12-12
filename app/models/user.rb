@@ -1,14 +1,14 @@
 class User < ActiveRecord::Base
   attr_accessor :password, :admin_creating_user, :user_applying, :user_updating_themselves, :skip_password_validation
-  attr_accessible :email, :password, :password_confirmation, :phone, :name, :admin_creating_user, :twitter, :bio, :newsletter_emails, :schedule_emails, :user_updating_themselves, :skip_password_validation, :admins_notified_of_first_availability_at, :deleted_at
+  attr_accessor :email, :password, :password_confirmation, :phone, :name, :admin_creating_user, :twitter, :bio, :newsletter_emails, :schedule_emails, :user_updating_themselves, :skip_password_validation, :admins_notified_of_first_availability_at, :deleted_at
 
   belongs_to :account
-  has_many :calls, :foreign_key => 'operator_id', :order => 'answered_at desc'
-  has_many :status_updates, :dependent => :destroy, :order => 'started_at asc'
-  has_many :reviews, :order => 'created_at desc', :foreign_key => 'operator_id'
-  has_many :oncall_schedules, :order => 'wday desc'
-  has_many :comments, :order => 'created_at desc'
-  has_many :activities, :order => 'created_at desc'
+  has_many :calls, -> { order('answered_at DESC') }, :foreign_key => 'operator_id'
+  has_many :status_updates, -> { order('started_at ASC') }, :dependent => :destroy
+  has_many :reviews, -> { order('created_at DESC') }, :foreign_key => 'operator_id'
+  has_many :oncall_schedules, -> { order('wday DESC') }
+  has_many :comments, -> { order('created_at desc') }
+  has_many :activities, -> { order('created_at desc') }
   
   before_save :encrypt_password, :unless => :no_password_required
   before_create :set_token
@@ -23,15 +23,15 @@ class User < ActiveRecord::Base
   validates :phone, :presence => true, :unless => Proc.new {|u| u.admin_creating_user }
   validates :email, :presence => true, :email_format => true
 
-  scope :on_call, where(:on_call => true)
-  scope :active, where(:deleted_at => nil).where(:pending_approval => false)
-  scope :pending, where(:pending_approval => true).where(:deleted_at => nil)
-  scope :have_logged_in, where('password_hash is not ?', nil)
-  scope :have_not_logged_in, where(:password_hash => nil)
-  scope :admin, where(:admin => true)
-  scope :receive_newsletters, where(:newsletter_emails => true)
-  scope :receive_volunteers_first_availability, where(:volunteers_first_availability_emails => true)
-  scope :has_phone, where('phone is not ?', nil).where('phone != ?', "")
+  scope :on_call, -> { where(:on_call => true) }
+  scope :active, -> { where(:deleted_at => nil).where(:pending_approval => false) }
+  scope :pending, -> { where(:pending_approval => true).where(:deleted_at => nil) }
+  scope :have_logged_in, -> { where('password_hash is not ?', nil) }
+  scope :have_not_logged_in, -> { where(:password_hash => nil) }
+  scope :admin, -> { where(:admin => true) }
+  scope :receive_newsletters, -> { where(:newsletter_emails => true) }
+  scope :receive_volunteers_first_availability, -> { where(:volunteers_first_availability_emails => true) }
+  scope :has_phone, -> { where('phone is not ?', nil).where('phone != ?', "") }
 
   def total_points
     reviews.select {|c| c.award_point_to_operator? }.length
