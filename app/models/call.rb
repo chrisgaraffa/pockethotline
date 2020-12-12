@@ -9,10 +9,10 @@ class Call < ActiveRecord::Base
 
   before_create :set_token
 
-  scope :answered,   where('answered_at is not ?', nil)
-  scope :unanswered, where('answered_at is ?', nil)
-  scope :unsponsored, joins('left outer join calls_sponsors on calls.id=calls_sponsors.call_id').where('calls_sponsors.sponsor_id is null')
-  scope :sponsored, joins('left outer join calls_sponsors on calls.id=calls_sponsors.call_id').where('calls_sponsors.sponsor_id is not null')
+  scope :answered, -> { where('answered_at is not ?', nil) }
+  scope :unanswered, -> { where('answered_at is ?', nil) }
+  scope :unsponsored, -> { joins('left outer join calls_sponsors on calls.id=calls_sponsors.call_id').where('calls_sponsors.sponsor_id is null') }
+  scope :sponsored, -> { joins('left outer join calls_sponsors on calls.id=calls_sponsors.call_id').where('calls_sponsors.sponsor_id is not null') }
 
   def answered?
     answered_at.present?
