@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def require_login
     unless logged_in?
       store_location
-      redirect_to(login_url, :notice => "Try logging in first.")
+      redirect_to(login_url, :alert => "Try logging in first.")
     end
   end
 

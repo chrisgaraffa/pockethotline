@@ -19,9 +19,9 @@
   <%= render 'layouts/header' %>
 
   <% flash.each do |type, msg| %>
-    <div class="alert <%= {'notice' => 'alert-success', 'alert' => 'alert-error'}[type] %>">
-      <a class="close" data-dismiss="alert" href="#">×</a>
+    <div class="alert <%= {'notice' => 'alert-success', 'alert' => 'alert-warning'}[type] %> alert-dismissible fade show" role="alert">
       <%= msg %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
 
