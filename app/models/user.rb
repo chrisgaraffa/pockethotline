@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   attr_accessor :password, :admin_creating_user, :user_applying, :user_updating_themselves, :skip_password_validation
-  attr_accessor :email, :password, :password_confirmation, :phone, :name, :admin_creating_user, :twitter, :bio, :newsletter_emails, :schedule_emails, :user_updating_themselves, :skip_password_validation, :admins_notified_of_first_availability_at, :deleted_at
 
   belongs_to :account
   has_many :calls, -> { order('answered_at DESC') }, :foreign_key => 'operator_id'
@@ -166,9 +165,9 @@ class User < ActiveRecord::Base
   end
 
   def set_token
-    self.token = BCrypt::Engine.generate_salt.parameterize
-    while User.find_by_token(self.token)
-      self.token = BCrypt::Engine.generate_salt.parameterize
-    end
+    #self.token = BCrypt::Engine.generate_salt.parameterize
+    #while User.find_by_token(self.token)
+    #  self.token = BCrypt::Engine.generate_salt.parameterize
+    #end
   end
 end

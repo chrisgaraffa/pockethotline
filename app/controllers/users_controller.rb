@@ -1,3 +1,4 @@
+require 'bcrypt'
 class UsersController < ApplicationController
   before_action :require_login, :except => [:set_password, :save_password, :apply, :apply_thanks, :create, :unsubscribe]
   before_action :require_admin, :only => [:index, :new, :destroy, :show, :approve]
@@ -135,7 +136,8 @@ class UsersController < ApplicationController
   end
 
   def user_applying
-    @user = User.new(params[:user].slice(:name, :email, :phone, :twitter, :bio))
+    puts params
+    @user = User.new(user_params)
     @user.pending_approval = true
     @user.user_applying = true
 
@@ -145,5 +147,9 @@ class UsersController < ApplicationController
     else
       render :action => "apply"
     end
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :phone, :twitter, :bio)
   end
 end
