@@ -70,7 +70,7 @@ class UsersController < ApplicationController
   def update
     @user = find_user
     @user.user_updating_themselves = true
-    if @user.update_attributes(params[:user].slice(:name, :email, :phone, :twitter, :bio, :newsletter_emails, :schedule_emails, :volunteers_first_availability_emails))
+    if @user.update(user_params)
       if params[:user][:on_call] == '1'
         @user.toggle_status(:on)
       elsif params[:user][:on_call] == '0'
@@ -152,6 +152,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :phone, :twitter, :bio)
+    params.require(:user).permit(:name, :email, :phone, :twitter, :bio, :newsletter_emails, :schedule_emails, :volunteers_first_availability_emails)
   end
 end
