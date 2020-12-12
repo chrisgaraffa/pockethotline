@@ -3,7 +3,7 @@
 //= require jquery.autoResize.js
 //= require jquery.timeago.js
 //= require jquery.validate.min.js
-//= require bootstrap2
+
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();

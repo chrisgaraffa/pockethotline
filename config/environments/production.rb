@@ -51,7 +51,7 @@ PocketHotline::Application.configure do
   config.assets.compile = true
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( bootstrap2.css bootstrap2-responsive.css bootstrap2.js marketing.css )
+  config.assets.precompile += %w( marketing.css )
 
   # Generate digests for assets URLs
   config.assets.digest = true

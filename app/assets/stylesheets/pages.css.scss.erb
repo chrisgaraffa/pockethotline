@@ -1,5 +1,3 @@
-@import "bootstrap/mixins";
-
 .chipboard {
 	background: #95664E;
 	background-image: url(<%= asset_data_uri('chipboard.jpg') %>);
@@ -12,7 +10,7 @@ body#pages_show {
 #hero {
 	padding: 10px;
 	overflow: hidden;
-	@include border-radius;
+
 	img {
 		margin-bottom: 20px;
 	}
@@ -37,7 +35,7 @@ body#pages_show {
 		float: right;
 		width: 38%;
 		background: #fff;
-		@include box-shadow(0 0 5px rgba(0,0,0,.25));
+		box-shadow: 0 0 5px rgba( 0, 0, 0, .25);
 		padding: 10px;
 		h4 {
 			color: #C1272D;
@@ -59,7 +57,6 @@ body#pages_show {
 	h1, h2, h3, h4, h5 {
 		color: #C1272D;
 	}
-	@include border-radius;
 	padding: 10px;
 	margin: 0 10px;
 	padding-bottom: 30px;
@@ -94,7 +91,7 @@ body#pages_show {
 		padding: 10px;
 		background: #fff;
 		border: 1px solid #b38951;
-		@include box-shadow(0 0 5px rgba(0,0,0,.25));
+		box-shadow: 0 0 5px rgba (0, 0, 0, .25);
 		border-top-left-radius: 20px 100px;
 		border-bottom-left-radius: 20px 100px;
 		border-top-right-radius: 20px 100px;
@@ -146,7 +143,7 @@ body#pages_show {
 		}
 	}
 	#time-remaining-box, #well-be-back {
-		@include box-shadow(0 0 5px rgba(0,0,0,.25));
+		box-shadow: 0 0 5px rgba(0,0,0,.25);
 		background: #fff;
 		position: static;
 		padding: 10px;
@@ -169,7 +166,6 @@ body#pages_show {
 			#bar {
 				width: 35px;
 				height: 50%;
-				@include gradientBar(lighten(#C1272D, 20%), #C1272D);
 				position: absolute;
 				bottom: 0;
 			}
@@ -200,7 +196,7 @@ body#pages_show {
 		}
 	}
 	#operators-on-call {
-		@include box-shadow(0 0 5px rgba(0,0,0,.25));
+		box-shadow: 0 0 5px rgba(0,0,0,.25);
 		background: #fff;
 		padding: 10px;
 		h4 {
@@ -229,7 +225,7 @@ body#pages_show {
 	.btn-wrapper {
 		clear: both;
 		margin-bottom: -28px;
-		@include border-radius(5px);
+		border-radius: 5px;
 		padding: 5px;
 		width: 85%;
 		margin-left: auto;
@@ -239,8 +235,7 @@ body#pages_show {
 			text-decoration: none;
 			font-weight: bold;
 			width: 85%;
-			@include border-radius(5px);
-			@include gradientBar(#424244, #1a1818);
+			border-radius: 5px;
 			color: #fff;
 		}	
 	}
