@@ -1,12 +1,10 @@
 <div class="row">
-  <div class="span7">
+  <div class="col-12 col-sm-8">
     <div class="clearfix widget">
       <h3 class="with-pill-nav">Hotline Activity</h3>
       <ul class="nav nav-pills">
-        <li class="active"><%= link_to 'All', "#", :class => 'all-activities-link' %></li>
-        
-        <li><%= link_to 'Mine', "#", :class => 'my-activities-link' %></li>
-        
+        <li class="nav-item"><%= link_to 'All', "#", :class => 'all-activities-link nav-link active' %></li>
+        <li class="nav-item"><%= link_to 'Mine', "#", :class => 'my-activities-link nav-link' %></li>
       </ul>
       <%= form_for(Activity.new, :remote => true) do |f| %>
         <%= f.text_area :body, :class => 'activity-update', :placeholder => 'Talk with the other hotline operators...' %>
@@ -18,15 +16,15 @@
       <%= render @activites %>
     </div>
   </div>
-  <div class="span4 offset1">
+  <div class="col-12 col-sm-4">
     <div class="clearfix widget">
       <h3 class="with-pill-nav">Operators</h3>
       <ul class="nav nav-pills">
-        <li class="active"><%= link_to 'On Call', "#", :class => "on-call-operators-listing" %></li>
-        <li><%= link_to 'All', "#", :class => 'all-operators-listing' %></li>
+        <li class="nav-item"><%= link_to 'On Call', "#", :class => "on-call-operators-listing nav-link active" %></li>
+        <li class="nav-item"><%= link_to 'All', "#", :class => 'all-operators-listing nav-link' %></li>
         <% if admin? %>
           <li>
-            <%= link_to 'Invite', new_user_path, "data-controls-modal" => 'invite_modal', "data-backdrop" => "static" %>
+            <%= link_to 'Invite', new_user_path, "data-controls-modal" => 'invite_modal', "data-backdrop" => "static", :class => 'nav-link' %>
           </li>
           <%= render 'users/invite_modal' %>
         <% end %>
@@ -57,8 +55,8 @@
     <div class="clearfix widget">
       <h3 class="with-pill-nav">My Calls</h3>
       <ul class="nav nav-pills">
-        <li class="active"><a href="#">Recent</a></li>
-        <li><%= link_to 'View All', current_user.admin? ? calls_path : user_calls_path(:current) %></li>
+        <li class="nav-item"><a href="#" class="nav-link active">Recent</a></li>
+        <li class="nav-item"><%= link_to 'View All', current_user.admin? ? calls_path : user_calls_path(:current), :class => 'nav-link' %></li>
       </ul>
       <% current_user.calls.limit(3).each do |call| %>
         <div class="recent-call">
@@ -84,8 +82,8 @@
 </div>
 <script>
   function makeActiveTab(link) {
-    link.parents('ul').find('li').removeClass('active');
-    link.parents('li').addClass('active');
+    link.parents('ul').find('a').removeClass('active');
+    link.addClass('active');
   };
 
   $(function() {
