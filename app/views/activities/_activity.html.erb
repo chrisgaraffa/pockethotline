@@ -13,7 +13,12 @@
         </div>
       </div>
       <div class="activity-row activity-timestamp">
-        <%= link_to_function '+ Comment', "$(this).parents('.activity-item').find('.activity-comments').show(); $(this).hide();", :class => 'add-comment' unless activity.comments.any? %>
+        <script>
+          $(".add-comment").click(function() {
+            $(this).parents('.activity-item').find('.activity-comments').show(); $(this).hide();
+          });
+        </script>
+        <%= link_to '+ Comment', "#", :class => 'add-comment' unless activity.comments.any? %>
         <%= link_to timestamp(activity.created_at), activity %>
       </div>
 

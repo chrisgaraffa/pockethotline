@@ -4,8 +4,13 @@
       <%= current_user.name %>
       <b class="caret"></b>
     </a>
+    <script>
+      $('.toggle-call-duty').click(function() {
+        toggle_status('<%= toggle_status_user_path(current_user) %>')
+      });
+    </script>
     <ul class="dropdown-menu">
-      <li><%= link_to_function "<span id='toggle_link'>#{current_user.on_call? ? 'End' : 'Start'}</span> Call Duty".html_safe, "toggle_status('#{toggle_status_user_path(current_user)}')" %></li>
+      <li><%= link_to "<span id='toggle_link'>#{current_user.on_call? ? 'End' : 'Start'}</span> Call Duty".html_safe, "#", :class => 'toggle-call-duty' %></li>
       <li class="divider"></li>
       <%= active_link_to 'My Info', edit_user_path(current_user), controller?('users') && action?('edit') && params[:id] =='current' %>
       <%= active_link_to 'My Schedule', user_oncall_schedules_path(:current), controller?('oncall_schedules') && action?('index') && params[:id] =='current' %>
