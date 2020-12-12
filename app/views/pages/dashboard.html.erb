@@ -4,17 +4,9 @@
       <h3 class="with-pill-nav">Hotline Activity</h3>
       <ul class="nav nav-pills">
         <li class="active"><%= link_to 'All', "#", :class => 'all-activities-link' %></li>
-        <script>
-          $(".all-activities-link").click(function() {
-            $('#activites').html(''); makeActiveTab($(this)); $.get('<%= activities_url(:format => :js) %>');
-          });
-        </script>
+        
         <li><%= link_to 'Mine', "#", :class => 'my-activities-link' %></li>
-        <script>
-        $(".my-activities-link").click(function() {
-          $('#activites').html(''); makeActiveTab($(this)); $.get('<%= user_activities_url(:current, :format => :js) %>');
-        })
-        </script>
+        
       </ul>
       <%= form_for(Activity.new, :remote => true) do |f| %>
         <%= f.text_area :body, :class => 'activity-update', :placeholder => 'Talk with the other hotline operators...' %>
@@ -29,14 +21,6 @@
   <div class="span4 offset1">
     <div class="clearfix widget">
       <h3 class="with-pill-nav">Operators</h3>
-      <script>
-        $(".on-call-operators-listing").click(function() {
-          makeActiveTab($(this)); $('#oncall-operators').show(); $('#all-operators').hide();
-        });
-        $(".all-operators-listing").click(function() {
-          makeActiveTab($(this)); $('#oncall-operators').hide(); $('#all-operators').show();
-        });
-      </script>
       <ul class="nav nav-pills">
         <li class="active"><%= link_to 'On Call', "#", :class => "on-call-operators-listing" %></li>
         <li><%= link_to 'All', "#", :class => 'all-operators-listing' %></li>
@@ -120,5 +104,25 @@
         }
       }
     });
+  });
+</script>
+
+
+<script>
+  $(".my-activities-link").click(function() {
+    $('#activites').html(''); makeActiveTab($(this)); $.get('<%= user_activities_url(:current, :format => :js) %>');
+  })
+</script>
+<script>
+    $(".all-activities-link").click(function() {
+      $('#activites').html(''); makeActiveTab($(this)); $.get('<%= activities_url(:format => :js) %>');
+    });
+</script>
+<script>
+  $(".on-call-operators-listing").click(function() {
+    makeActiveTab($(this)); $('#oncall-operators').show(); $('#all-operators').hide();
+  });
+  $(".all-operators-listing").click(function() {
+    makeActiveTab($(this)); $('#oncall-operators').hide(); $('#all-operators').show();
   });
 </script>

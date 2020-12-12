@@ -1,11 +1,20 @@
 <h3 class="with-pill-nav">
   Edit <%= @user == current_user ? 'My Info' : @user.name %>
 </h3>
+
 <ul class="nav nav-pills">
-  <li class="active"><%= link_to_function 'Basic', "makeActiveTab($(this)); $('.section').hide(); $('#edit_basic').show();", 'data-tab-id' => 'edit_basic' %></li>
-  <li><%= link_to_function 'Notifications', "makeActiveTab($(this)); $('.section').hide(); $('#edit_notifications').show();", 'data-tab-id' => 'edit_notifications' %></li>
+  <li class="active"><%= link_to 'Basic', "#", 'data-tab-id' => 'edit_basic', :class => 'show-user-edit-basic-tab' %></li>
+  <li><%= link_to 'Notifications', "#", 'data-tab-id' => 'edit_notifications', :class => 'show-user-notifications-tab' %></li>
   <li><%= link_to 'Schedule', user_oncall_schedules_path(@user.id) %></li>
 </ul>
+<script>
+  $(".show-user-edit-basic-tab").click(function() {
+    makeActiveTab($(this)); $('.section').hide(); $('#edit_basic').show();
+  });
+  $(".show-user-notifications-tab").click(function() {
+    makeActiveTab($(this)); $('.section').hide(); $('#edit_notifications').show();
+  });
+</script>
 
 <% if current_user.admin? && @user.pending_approval? %>
   <div style="padding:10px; background: #eee; border: 1px solid #999; margin-bottom: 20px;">
