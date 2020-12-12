@@ -30,9 +30,9 @@
             <% if logged_in? %>
               <%= render 'layouts/current_user_toolbar' %>
               <div class="btn-group pull-right on-call-toggle" data-toggle="buttons-radio">
-              <button class="btn <%= 'active' if current_user.on_call? %>" data-status="on">ON CALL</button>
-              <button class="btn <%= 'active' unless current_user.on_call? %>" data-status="off">OFF CALL</button>
-            </div>
+                <button class="btn <%= 'btn-primary' if current_user.on_call? %>" data-status="on">ON CALL</button>
+                <button class="btn <%= 'btn-primary' unless current_user.on_call? %>" data-status="off">OFF CALL</button>
+              </div>
             <script type="text/javascript">
               $(document).ready(function() {
                 $('.on-call-toggle .btn').click(function() {
