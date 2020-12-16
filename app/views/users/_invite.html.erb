@@ -5,7 +5,7 @@
 <%= form_for(User.new, :html => {:class => 'form-horizontal'}) do |f| %>
   <p class="lead">The operator will receive this email that includes a link to login and set their password:</p>
 
-  <% if @user.errors.any? %>
+  <% if @user.present? && @user.errors.any? %>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</strong><br>
       <ul>
