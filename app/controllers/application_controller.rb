@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include UrlHelper
+  include PhoneHelper
   protect_from_forgery
   before_action :set_time_zone
 
