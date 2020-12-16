@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
 
   def go_on_call
     if status_updates.empty? || status_updates.last && status_updates.last.closed?
-      status_updates.create(:started_at => Time.now, :account => account)
+      status_updates.create(:started_at => Time.now)#, :account => account)
     end
     TwitterIntegration.delay({:run_at => 10.minutes.from_now}).tweet_that_operators_are_on_call if TwitterIntegration.active?
     delay({:run_at => 10.minutes.from_now}).notify_admins_of_volunteers_first_availability if admins_notified_of_first_availability_at.blank? && !self.admin?
@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   def go_off_call
     on_call_span = status_updates.last
     if on_call_span && on_call_span.open?
-      on_call_span.update_attributes(:ended_at => Time.now)
+      on_call_span.update(:ended_at => Time.now)
     end
     self.update_attribute(:on_call, false)
   end
