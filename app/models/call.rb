@@ -47,18 +47,17 @@ class Call < ActiveRecord::Base
   end
 
   def self.create_from_twilio_params(params)
-    caller = Caller.find_or_create_by_phone(
-      :state        => params[:CallerState],
-      :from_state   => params[:FromState],
-      :city         => params[:CallerCity],
-      :from_city    => params[:FromCity],
-      :zip          => params[:CallerZip],
-      :from_zip     => params[:FromZip],
-      :phone        => params[:Caller],
-      :from_phone   => params[:From],
-      :country      => params[:CallerCountry],
-      :from_country => params[:FromCountry],
-    )
+    caller = Caller.find_or_create_by(:phone => params[:Caller]) do |c|
+      c.state = params[:CallerState]
+      c.from_state = params[:FromState]
+      c.city = params[:CallerCity]
+      c.from_city = params[:FromCity]
+      c.zip = params[:CallerZip]
+      c.from_zip = params[:FromZip]
+      c.from_phone = params[:From]
+      c.country = params[:CallerCountry]
+      c.from_country = params[:FromCountry]
+    end
 
     caller.calls.create(:twilio_id  => params[:CallSid], :started_at => Time.now)
   end

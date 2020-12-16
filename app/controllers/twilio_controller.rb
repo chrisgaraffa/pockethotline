@@ -80,8 +80,8 @@ class TwilioController < ApplicationController
   def dial_operators
     User.available_to_take_calls.each do |user|
       c = TWILIO.calls.create(
-        :from => Rails.configuration.x.hotline.number,
-        :to => user.phone,
+        :from => convert_to_e164(Rails.configuration.x.hotline.number),
+        :to => convert_to_e164(user.phone),
         :url => twilio_operator_answer_url(:call_id => @call.id, :user_id => user.id)
       )
       OutgoingCall.create(
