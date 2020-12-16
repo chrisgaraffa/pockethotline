@@ -29,4 +29,7 @@ PocketHotline::Application.configure do
   config.assets.debug = true
 
   config.eager_load = false
+
+  #Allow any testing URL.
+  config.hosts << '*'
 end
