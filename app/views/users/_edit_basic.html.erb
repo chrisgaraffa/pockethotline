@@ -1,54 +1,41 @@
-<div class="control-group">
-  <%= f.label :name, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :name %>
+  <div class="mb-3">
+    <%= f.label :name, :class => 'control-label' %>
+    <%= f.text_field :name, :class => 'form-control' %>
   </div>
-</div>
 
-<div class="control-group">
-  <%= f.label :email, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :email %>
+  <div class="mb-3">
+    <%= f.label :email, :class => 'control-label' %>
+    <%= f.text_field :email, :type => 'email', :class => 'form-control' %>
   </div>
-</div>
 
-<div class="control-group">
-  <%= f.label :phone, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :phone %>
-    <p class="help-block">xxx-xxx-xxxx 10 digit US number</p>
+  <div class="mb-3">
+    <%= f.label :phone, :class => 'control-label' %>
+    <%= f.text_field :phone, :type => 'tel', :class => 'form-control' %>
+    <p class="form-text">xxx-xxx-xxxx 10 digit US number</p>
   </div>
-</div>
 
-<div class="control-group">
-  <%= f.label :twitter, 'Twitter Username', :class => 'control-label' %>
-  <div class="controls">
-    <div class="input-prepend">
-      <span class="add-on">@</span>
-      <%= f.text_field :twitter %>
+  <div class="mb-3">
+    <%= f.label :twitter, 'Twitter Username', :class => 'control-label' %>
+    <div class="input-group">
+      <span class="input-group-text" id="basic-addon1">@</span>
+      <%= f.text_field :twitter, :class => 'form-control' %>
     </div>
   </div>
-</div>
 
-<div class="control-group">
-  <%= f.label :bio, 'Short Bio', :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_area :bio, :rows => 3 %>
-    <span class="help-block">please limit to 140 characters</span>
+  <div class="mb-3">
+    <%= f.label :bio, 'Short Bio', :class => 'control-label' %>
+    <%= f.text_area :bio, :class => 'form-control' %>
+    <span class="form-text">please limit to 140 characters</span>
   </div>
-</div>
 
-<div class="control-group">
-  <div class="controls">
-    <label class="checkbox">
-      <%= f.check_box :on_call %>
-      <span>On call now</span>
-    </label>
-    <% if admin? %>
-      <label class="checkbox">
-        <%= f.check_box :admin %>
-        <span>Admin</span>
-      </label>
-    <% end %>
+  <div class="form-check mb-3">
+    <%= f.check_box :on_call, :class => 'form-check-input' %>
+    <%= f.label :on_call, :class => 'form-check-label' %>
   </div>
-</div>
+
+  <% if admin? %>
+    <div class="form-check mb-3">
+      <%= f.check_box :admin, :class => 'form-check-input' %>
+      <%= f.label :admin, :class => 'form-check-label' %>
+    </div>
+  <% end %>

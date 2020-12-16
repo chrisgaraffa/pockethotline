@@ -1,21 +1,16 @@
-<div class="control-group">
-  <div class="controls">
-    <label class="checkbox">
-      <%= f.check_box :newsletter_emails %>
-      <span>Email me hotline updates and news.</span>
-    </label>
-
-    <label class="checkbox">
-      <%= f.check_box :schedule_emails %>
-      <span>Email me when <%= link_to 'my schedule', user_oncall_schedules_path(@user) %> puts me on or off call.</span>
-    </label>
-
-    <% if @user.admin? %>
-      <label class="checkbox">
-        <%= f.check_box :volunteers_first_availability_emails %>
-        <span>Email me when a volunteer goes on-call for the first time.</span>
-      </label>
-    <% end %>
-
-  </div>
+<div class="form-check mb-3">
+  <%= f.check_box :newsletter_emails, :class => 'form-check-input' %>
+  <%= f.label :newsletter_emails, 'Email me hotline news and updates', :class => 'form-check-label' %>
 </div>
+
+<div class="form-check mb-3">
+  <%= f.check_box :schedule_emails, :class => 'form-check-input' %>
+  <%= f.label :schedule_emails, "Email me when #{link_to 'my schedule', user_oncall_schedules_path(@user)} puts me on or off call.".html_safe, :class => 'form-check-label' %>
+</div>
+ 
+<% if @user.admin? %>
+  <div class="form-check mb-3">
+  <%= f.check_box :volunteers_first_availability_emails, :class => 'form-check-input' %>
+  <%= f.label :volunteers_first_availability_emails, "Email me when a volunteer goes on-call for the first time.", :class => 'form-check-label' %>
+</div>
+<% end %>
