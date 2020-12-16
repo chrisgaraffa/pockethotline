@@ -3,38 +3,29 @@
 <% end %>
 
 <%= form_for(User.new, :html => {:class => 'form-horizontal'}) do |f| %>
-  <div class="control-group">
-    <label for="email_body" class="control-label">The operator will receive this email that includes a link to login and set their password:</label>
-  </div>
+  <p class="lead">The operator will receive this email that includes a link to login and set their password:</p>
 
-  <% if @user && @user.errors.any? %>
-    <div id="error_explanation">
-      <h2>Oops, check the errors below:</h2>
-
+  <% if @user.errors.any? %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</strong><br>
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :name, "Volunteer's Name*", :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name %>
-      <span class="help-block">First and last</span>
-    </div>
+  <div class="mb-3">
+    <%= f.label :name, "Volunteer's Name*" %>
+    <%= f.text_field :name, :class => 'form-control', :required => 'required' %>
   </div>
 
-  <div class="control-group">
-    <%= f.label :email, "Volunteer's Email*", :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email %>
-    </div>
+  <div class="mb-3">
+    <%= f.label :email, "Volunteer's Email*"%>
+    <%= f.text_field :email, :type => 'email', :class => 'form-control', :required => 'required' %>
   </div>
 
-  <div class="form-actions">
-    <%= f.submit 'Send Invite Email', :class => 'btn btn-inverse' %>
-  </div>
+  <%= f.submit 'Send Invite Email', :class => 'btn btn-primary' %>
 <% end %>
