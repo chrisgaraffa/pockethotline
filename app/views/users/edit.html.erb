@@ -56,11 +56,6 @@
 </div>
 
 <script>
-  function makeActiveTab(link) {
-    link.parents('ul').find('li').removeClass('active');
-    link.parents('li').addClass('active');
-  };
-
   $(document).ready(function() {
     activeTab = '<%= params[:specifically] %>';
     if (activeTab == '') {

@@ -4,6 +4,10 @@
 //= require jquery.timeago.js
 //= require jquery.validate.min.js
 
+function makeActiveTab(link) {
+  link.parents('ul').find('a').removeClass('active');
+  link.addClass('active');
+}
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();

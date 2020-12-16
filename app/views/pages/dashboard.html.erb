@@ -81,11 +81,6 @@
   </div>
 </div>
 <script>
-  function makeActiveTab(link) {
-    link.parents('ul').find('a').removeClass('active');
-    link.addClass('active');
-  };
-
   $(function() {
     $('textarea').not('.no-auto-resize').autoResize({extraSpace:0, animate:false});
     $("abbr.timeago").timeago();
