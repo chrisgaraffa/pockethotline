@@ -1,9 +1,13 @@
-<div id="invite_modal" class="modal" style="display: none;">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Invite Volunteer</h3>
-  </div>
-  <div class="modal-body">
-    <%= render 'users/invite' %>
+<div class="modal fade" id="invite-modal" tabindex="-1" aria-labelledby="invite-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="invite-modal-label">Invite Volunteer</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'users/invite' %>
+      </div>
+    </div>
   </div>
 </div>
