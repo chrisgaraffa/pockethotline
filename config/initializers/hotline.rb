@@ -3,15 +3,15 @@ module PocketHotline
 
     # === REQUIRED CONFIG ===
     config.x.hotline.name = 'My Hotline'
-    config.x.hotline.domain = 'motline.herokuapp.com'
+    config.x.hotline.domain = ENV['HOTLINE_URL']
     config.x.hotline.organizer = 'My Name'
     # Operators and supporters will see this email
     config.x.hotline.organizer_email = 'myemail@gmail.com'
     # Numbers can be purchased from twilio.com
-    config.x.hotline.number = '+10000000000'
+    config.x.hotline.number = ENV['TWILIO_HOTLINE_NUMBER']
     # sensetive config options need to be set as environment variables
     # learn more https://devcenter.heroku.com/articles/config-vars
-    config.x.twilio.account_sid = 'XXXXXXXXXXXXX'
+    config.x.twilio.account_sid = ENV['TWILIO_ACCOUNT_SID']
     config.x.twilio.auth_token = ENV['TWILIO_AUTH_TOKEN']
 
 
