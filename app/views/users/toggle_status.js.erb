@@ -1,14 +1,14 @@
 <% if @user.on_call? %>
-  $('.btn[data-status=on]').addClass('active');
-  $('.btn[data-status=off]').removeClass('active');
+  $('.btn[data-status=on]').addClass('btn-primary');
+  $('.btn[data-status=off]').removeClass('btn-primary');
   $('#toggle_link').text('End');
   $('#oncall-operators').append("<%= escape_javascript(render(@user)) %>");
   if ($('#oncall-operators a').length > 0) {
     $('#noone-oncall').hide();
   }
 <% else %>
-  $('.btn[data-status=off]').addClass('active');
-  $('.btn[data-status=on]').removeClass('active');
+  $('.btn[data-status=off]').addClass('btn-primary');
+  $('.btn[data-status=on]').removeClass('btn-primary');
   $('#toggle_link').text('Start');
   $('#oncall-operators #operator-<%= @user.id %>').remove();
   if ($('#oncall-operators a').length < 1) {

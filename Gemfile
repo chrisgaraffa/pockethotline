@@ -20,6 +20,7 @@ gem 'unicorn'
 gem 'custom_configuration', '~> 0.0.2'
 gem 'mime-types', '~> 3.3'
 gem 'rest-client', '~> 2.1'
+gem 'active_link_to'
 
 group :assets do
   #gem 'less'

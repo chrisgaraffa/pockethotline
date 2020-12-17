@@ -33,8 +33,8 @@
           </div>
           <div class="comment-content">
             <%= form_for([activity, Comment.new], :remote => true) do |f| %>
-              <%= f.text_area :body, :class => 'comment', :placeholder => "Write a comment..." %>
-              <%= f.submit 'Comment', :class => 'btn', :disable_with => '...' %>
+              <%= f.text_area :body, :class => 'comment form-control form-control-sm mb-1', :placeholder => "Write a comment..." %>
+              <%= f.submit 'Comment', :class => 'btn btn-primary btn-sm float-end', :disable_with => '...' %>
             <% end %>
           </div>
         </div>

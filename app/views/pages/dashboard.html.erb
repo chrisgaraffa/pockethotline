@@ -7,8 +7,8 @@
         <li class="nav-item"><%= link_to 'Mine', "#", :class => 'my-activities-link nav-link' %></li>
       </ul>
       <%= form_for(Activity.new, :remote => true) do |f| %>
-        <%= f.text_area :body, :class => 'activity-update', :placeholder => 'Talk with the other hotline operators...' %>
-        <%= f.submit 'Share', :class => 'btn btn-inverse', :style => 'float:right;' %>
+        <%= f.text_area :body, :class => 'activity-update form-control', :placeholder => 'Talk with the other hotline operators...' %>
+        <%= f.submit 'Share', :class => 'btn btn-primary float-end' %>
       <% end %>
     </div>
 
@@ -17,65 +17,67 @@
     </div>
   </div>
   <div class="col-12 col-sm-4">
-    <div class="clearfix widget">
-      <h3 class="with-pill-nav">Operators</h3>
-      <ul class="nav nav-pills">
-        <li class="nav-item"><%= link_to 'On Call', "#", :class => "on-call-operators-listing nav-link active" %></li>
-        <li class="nav-item"><%= link_to 'All', "#", :class => 'all-operators-listing nav-link' %></li>
-        <% if admin? %>
-          <li>
-            <%= link_to 'Invite', new_user_path, "data-controls-modal" => 'invite_modal', "data-backdrop" => "static", :class => 'nav-link' %>
-          </li>
-          <%= render 'users/invite_modal' %>
-        <% end %>
-      </ul>
-      <div id="operators">
-        <%= render 'users/operators_grid' %>
+    <div class="card mb-4">
+      <div class="card-header">Operators</div>
+      <div class="card-body">
+        <div id="operators">
+          <%= render 'users/operators_grid' %>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <!-- TODO: Looks like crap on small displays. Un-group? -->
+        <div class="btn-group" role="group" aria-label="Operator List Options">
+          <%= link_to 'On Call', "#", :class => "on-call-operators-listing btn btn-primary" %>
+          <%= link_to 'All', "#", :class => "all-operators-listing btn btn-outline-primary" %>
+          <%= link_to 'Invite', new_user_path, "data-bs-toggle" => 'modal', 'data-bs-target' => '#invite-modal', "data-bs-backdrop" => "static", :class => 'btn btn-outline-primary' if admin? %>
+        </div>
       </div>
     </div>
 
-    <div class="clearfix widget">
-      <h3 class="with-pill-nav">My Schedule</h3>
-      <ul class="nav nav-pills">
-        <li><%= link_to 'Edit', user_oncall_schedules_path(:current) %></li>
-      </ul>
-      <ul class="thumbnails">
-        <% schedules = current_user.oncall_schedules %>
-        <% (0..4).each do |i| %>
-          <% day = i.days.from_now%>
-          <% schedule = schedules.select{|s| s.wday == day.to_date.cwday}.first %>
-          <div id="schedule_<%= i %>" title="<%= "<strong>#{schedule.nil? ? 'Not Scheduled' : schedule.to_abbrev}</strong><br />#{day.strftime("%A")}" %>s" class="schedule-day <%= 'scheduled' if schedule.present? %>">
-            <div class="month"><%= day.strftime("%b")%></div>
-            <div class="day"><%= day.strftime("%e")%></div>
-          </div>
-        <% end %>
-      </ul>
+    <div class="card mb-4">
+      <div class="card-header">My Schedule</div>
+      <div class="card-body">
+        <!-- TODO: Horizontal on xs, standard on sm/md, Horizontal on lg -->
+        <ul class="list-group list-group-horizontal-lg">
+          <% schedules = current_user.oncall_schedules %>
+          <% (0..4).each do |i| %>
+            <% day = i.days.from_now%>
+            <% schedule = schedules.select{|s| s.wday == day.to_date.cwday}.first %>
+            <li title="<%= "<strong>#{schedule.nil? ? 'Not Scheduled' : schedule.to_abbrev}</strong><br />#{day.strftime("%A")}" %>s" class="flex-fill list-group-item schedule-day <%= 'list-group-item-success' if schedule.present? %>">
+              <div class="month"><%= day.strftime("%b")%></div>
+              <div class="day"><%= day.strftime("%e")%></div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <%= link_to 'Edit', user_oncall_schedules_path(:current) %>
+      </div>
     </div>
 
-    <div class="clearfix widget">
-      <h3 class="with-pill-nav">My Calls</h3>
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active">Recent</a></li>
-        <li class="nav-item"><%= link_to 'View All', current_user.admin? ? calls_path : user_calls_path(:current), :class => 'nav-link' %></li>
-      </ul>
-      <% current_user.calls.limit(3).each do |call| %>
-        <div class="recent-call">
-          <a class="call-date" href="#<%# url_for(call) %>">
-            <div class="month"><%= call.created_at.strftime("%b")%></div>
-            <div class="day"><%= call.created_at.strftime("%e")%></div>
-          </a>
-          <div class="call-content">
-            <div class="call-row">
-              <span class="call-name">Call #<%= call.id %> <small><%= call.timecode %></small></span>
-            </div>
-            <div class="call-row">
-            </div>
-            <div class="call-row call-timestamp">
-              <%= call.created_at.strftime("%l:%M %p %Z") %>
+    <div class="card mb-4">
+      <div class="card-header">Recent Calls</div>
+      <div class="card-body">
+        <% current_user.calls.limit(3).each do |call| %>
+          <div class="recent-call">
+            <a class="call-date" href="#<%# url_for(call) %>">
+              <div class="month"><%= call.created_at.strftime("%b")%></div>
+              <div class="day"><%= call.created_at.strftime("%e")%></div>
+            </a>
+            <div class="call-content">
+              <div class="call-row">
+                <span class="call-name">Call #<%= call.id %> <small><%= call.timecode %></small></span>
+              </div>
+              <div class="call-row">
+              </div>
+              <div class="call-row call-timestamp">
+                <%= call.created_at.strftime("%l:%M %p %Z") %>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+      <div class="card-footer"><%= link_to 'View All', current_user.admin? ? calls_path : user_calls_path(:current) %></div>
     </div>
 
   </div>
@@ -113,9 +115,19 @@
 </script>
 <script>
   $(".on-call-operators-listing").click(function() {
-    makeActiveTab($(this)); $('#oncall-operators').show(); $('#all-operators').hide();
+    $(this).parents(".btn-group").find(".btn-primary").removeClass("btn-primary active").addClass("btn-outline-primary");
+    $(this).addClass("btn-primary").removeClass("btn-outline-primary");
+    $('#oncall-operators').show();
+    $('#all-operators').hide();
   });
   $(".all-operators-listing").click(function() {
-    makeActiveTab($(this)); $('#oncall-operators').hide(); $('#all-operators').show();
+    $(this).parents(".btn-group").find(".btn-primary").removeClass("btn-primary active").addClass("btn-outline-primary");
+    $(this).addClass("btn-primary").removeClass("btn-outline-primary");
+    $('#oncall-operators').hide();
+    $('#all-operators').show();
   });
 </script>
+
+<% if admin? %>
+  <%= render 'users/invite_modal' %>
+<% end %>
