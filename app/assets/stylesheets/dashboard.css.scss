@@ -1,6 +1,5 @@
 .activity-item, .recent-call, .comment-item {
   clear: both; 
-//  border-bottom: 1px solid #EBEBEB;
   padding: 10px 0;
   overflow: hidden;
 }
@@ -125,21 +124,6 @@ a .label:hover {
   margin-top: 3px;
   margin-bottom: 20px; 
   margin-right: 20px;
-}
-
-textarea {
-  color: #222;
-  &.activity-update {
-    width: 99%;
-    height: 1em;
-    margin-bottom: 10px;
-  }
-  &.comment {
-    width: 90%;
-    height: 1em;
-    margin-top: 5px;
-    margin-bottom: 4px;
-  }
 }
 
 a.add-comment {
