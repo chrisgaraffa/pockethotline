@@ -7,8 +7,8 @@
         <li class="nav-item"><%= link_to 'Mine', "#", :class => 'my-activities-link nav-link' %></li>
       </ul>
       <%= form_for(Activity.new, :remote => true) do |f| %>
-        <%= f.text_area :body, :class => 'activity-update', :placeholder => 'Talk with the other hotline operators...' %>
-        <%= f.submit 'Share', :class => 'btn btn-inverse', :style => 'float:right;' %>
+        <%= f.text_area :body, :class => 'activity-update form-control', :placeholder => 'Talk with the other hotline operators...' %>
+        <%= f.submit 'Share', :class => 'btn btn-primary float-end' %>
       <% end %>
     </div>
 
