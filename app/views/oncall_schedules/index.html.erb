@@ -4,28 +4,33 @@
 
 <%= form_for(OncallSchedule.new, :url => user_oncall_schedules_path(params[:user_id])) do %>
 
-  <table class="table">
-    <% @oncall_schedules.each do |oncall_schedule| %>
+  <table class="table table-hover table-striped">
+    <thead>
       <tr>
-        <td><strong><%= days_of_the_week[oncall_schedule.wday-1] %>s</strong></td>
-        <td>
-          <%= select_tag("[days]#{oncall_schedule.wday}[start_time]", schedule_options_for_select(oncall_schedule.start_time)) %>
-          <span style="color:#ccc;">&nbsp; to &nbsp;</span>
-          <%= select_tag("[days]#{oncall_schedule.wday}[end_time]", schedule_options_for_select(oncall_schedule.end_time)) %>
-          <%= hidden_field_tag "[days]#{oncall_schedule.wday}[wday]", oncall_schedule.wday %>
-        </td>
+        <th>Day</th>
+        <th>Times</th>
       </tr>
-    <% end %>
-
+      <tbody>
+        <% @oncall_schedules.each do |oncall_schedule| %>
+          <tr>
+            <td><strong><%= days_of_the_week[oncall_schedule.wday-1] %>s</strong></td>
+            <td>
+              <%= select_tag("[days]#{oncall_schedule.wday}[start_time]", schedule_options_for_select(oncall_schedule.start_time), :class => 'form-control w-auto d-inline') %>
+              <span style="color:#ccc;">&nbsp; to &nbsp;</span>
+              <%= select_tag("[days]#{oncall_schedule.wday}[end_time]", schedule_options_for_select(oncall_schedule.end_time), :class => 'form-control w-auto d-inline') %>
+              <%= hidden_field_tag "[days]#{oncall_schedule.wday}[wday]", oncall_schedule.wday %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
   </table>
 
-  <div class="clearfix">
-    <label style="width:100%;float:none;">
-      <%= check_box_tag :schedule_emails, true, @user.schedule_emails? %>
-      <span>Email me when schedule puts me on or off call</span>
-    </label>
+  <div class="form-check mb-3">
+    <%= check_box_tag :schedule_emails, :class => 'form-check-input' %>
+    <%= label_tag :schedule_emails, "Email me when schedule puts me on or off call", :class => 'form-check-label' %>
   </div>
 
-  <div class="form-actions"><%= submit_tag 'Save Schedule', :class => 'btn btn-inverse' %></div>
+
+  <%= submit_tag 'Save Schedule', :class => 'btn btn-primary' %>
 
 <% end %>
