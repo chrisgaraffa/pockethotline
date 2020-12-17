@@ -15,10 +15,11 @@ gem 'delayed_job_active_record', '~> 4.1.5'
 gem 'rails_autolink'
 gem 'will_paginate', '~> 3.0.4'
 gem 'twitter', '~> 7.0.0'
-gem 'stripe', '~> 1.5.24'
+gem 'stripe', '~> 5'
 gem 'unicorn'
 gem 'custom_configuration', '~> 0.0.2'
-gem 'mime-types', '~> 3'
+gem 'mime-types', '~> 3.3'
+gem 'rest-client', '~> 2.1'
 
 group :assets do
   #gem 'less'
