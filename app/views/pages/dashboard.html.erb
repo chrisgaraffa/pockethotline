@@ -25,6 +25,7 @@
         </div>
       </div>
       <div class="card-footer text-center">
+        <!-- TODO: Looks like crap on small displays. Un-group? -->
         <div class="btn-group" role="group" aria-label="Operator List Options">
           <%= link_to 'On Call', "#", :class => "on-call-operators-listing btn btn-primary" %>
           <%= link_to 'All', "#", :class => "all-operators-listing btn btn-outline-primary" %>
@@ -36,15 +37,16 @@
     <div class="card mb-4">
       <div class="card-header">My Schedule</div>
       <div class="card-body">
-        <ul class="thumbnails">
+        <!-- TODO: Horizontal on xs, standard on sm/md, Horizontal on lg -->
+        <ul class="list-group list-group-horizontal-lg">
           <% schedules = current_user.oncall_schedules %>
           <% (0..4).each do |i| %>
             <% day = i.days.from_now%>
             <% schedule = schedules.select{|s| s.wday == day.to_date.cwday}.first %>
-            <div id="schedule_<%= i %>" title="<%= "<strong>#{schedule.nil? ? 'Not Scheduled' : schedule.to_abbrev}</strong><br />#{day.strftime("%A")}" %>s" class="schedule-day <%= 'scheduled' if schedule.present? %>">
+            <li title="<%= "<strong>#{schedule.nil? ? 'Not Scheduled' : schedule.to_abbrev}</strong><br />#{day.strftime("%A")}" %>s" class="flex-fill list-group-item schedule-day <%= 'list-group-item-success' if schedule.present? %>">
               <div class="month"><%= day.strftime("%b")%></div>
               <div class="day"><%= day.strftime("%e")%></div>
-            </div>
+            </li>
           <% end %>
         </ul>
       </div>
