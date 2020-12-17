@@ -8,13 +8,6 @@ module ApplicationHelper
     "ui-btn-down-a" if controller.controller_name == button[0] && controller.action_name == button[1]
   end
 
-  def active_link_to(text, url, condition = nil)
-    if condition.nil? and String === url
-      condition = url == request.path
-    end
-    content_tag :li, link_to(raw(text), url), :class => (condition && 'active')
-  end
-
   def controller?(*names)
     names.find { |name| controller.controller_name == name.to_s }
   end
