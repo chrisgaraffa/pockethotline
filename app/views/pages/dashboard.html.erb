@@ -20,9 +20,6 @@
     <div class="card mb-4">
       <div class="card-header">Operators</div>
       <div class="card-body">
-          <% if admin? %>
-            <%= render 'users/invite_modal' %>
-          <% end %>
         <div id="operators">
           <%= render 'users/operators_grid' %>
         </div>
@@ -128,3 +125,7 @@
     $('#all-operators').show();
   });
 </script>
+
+<% if admin? %>
+  <%= render 'users/invite_modal' %>
+<% end %>
