@@ -1,11 +1,12 @@
-<a class="nav-link dropdown-toggle" href="#" id="navbar-user-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+<%= active_link_to current_user.name, '#', active: /users/, :class => 'nav-link dropdown-toggle', :role => 'button', 'data-bs-toggle' => 'dropdown', 'aria-expanded' => 'false', :id => 'navbar-user-dropdown' %>
+<!--<a class="nav-link dropdown-toggle" href="#" id="navbar-user-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
   <%= current_user.name %>
-</a>
+</a>-->
 <ul class="dropdown-menu" aria-labelledby="navbar-user-dropdown">
-  <li><%= link_to "<span id='toggle_link'>#{current_user.on_call? ? 'End' : 'Start'}</span> Call Duty".html_safe, "#", :class => 'toggle-call-duty nav-link' %></li>
+  <li><%= link_to "<span id='toggle_link'>#{current_user.on_call? ? 'End' : 'Start'}</span> Call Duty".html_safe, "#", :class => 'toggle-call-duty nav-link active' %></li>
   <li class="dropdown-divider"></li>
-  <%= link_to 'My Info', edit_user_path(current_user), :class => 'nav-link' %>
-  <%= link_to 'My Schedule', user_oncall_schedules_path(:current), :class => 'nav-link' %>
+  <%= link_to 'My Info', edit_user_path(current_user), :class => 'nav-link active' %>
+  <%= link_to 'My Schedule', user_oncall_schedules_path(:current), :class => 'nav-link active' %>
   <li class="dropdown-divider"></li>
   <li><%= link_to 'Sign out', logout_path, method: :delete, :class => 'nav-link' %></li>
 </ul>
