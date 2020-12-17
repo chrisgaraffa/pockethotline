@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @activity = Activity.find(params[:activity_id])
-    @comment = current_user.comments.new(params[:comment].slice(:body))
+    @comment = current_user.comments.new(comment_params)
     @comment.activity = @activity
 
     respond_to do |format|
@@ -21,5 +21,9 @@ class CommentsController < ApplicationController
         format.js { head :bad_request }
       end
     end
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body)
   end
 end
