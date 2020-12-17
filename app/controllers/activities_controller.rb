@@ -16,7 +16,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = Activity.new(params[:activity].slice(:body))
+    @activity = Activity.new(activity_params)
     @activity.user = current_user
 
     respond_to do |format|
@@ -35,5 +35,9 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.includes([:comments => :user]).includes(:user).find(params[:id])
+  end
+
+  def activity_params
+    params.require(:activity).permit(:body)
   end
 end
