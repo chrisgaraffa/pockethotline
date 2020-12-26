@@ -8,7 +8,7 @@
       <tr style="border:none;">
         <% i += 1 %>
         <td style=""><strong><%= day %></strong></td>
-        <% OncallSchedule.includes(:user).where('user_id is not null and users.deleted_at is null').where(:wday => i).order(:start_time).each do |schedule| %>
+        <% OncallSchedule.joins(:user).where('user_id is not null and users.deleted_at is null').where(:wday => i).order(:start_time).each do |schedule| %>
           <td style="">
             <%= link_to schedule.user.name, user_oncall_schedules_path(schedule.user) %>
             <%= schedule.to_abbrev %>
