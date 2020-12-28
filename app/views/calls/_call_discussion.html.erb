@@ -1,0 +1,51 @@
+<div class="activity-item" id="call_<%= call.id %>">
+  <div class="activity-image">
+    <%= image_tag(call.operator.gravatar('40').gsub('http:',''), :width => 40, :height => 40, :class => 'thumbnail') %>
+  </div>
+  <div class="activity-content">
+    <div class="activity-row">
+      <span class="activity-name"><%= call.operator.name %> <small><%= '@' + call.operator.twitter if call.operator.twitter.present? %></small></span>
+    </div>
+    <div class="activity-row">
+      <div class="activity-text">
+        <%= simple_format auto_link(call.notes) %>
+      </div>
+    </div>
+    <div class="activity-row activity-timestamp">
+      <script>
+        $(".add-comment").click(function() {
+          $(this).parents('.activity-item').find('.activity-comments').show(); $(this).hide();
+        });
+      </script>
+      <%= link_to '+ Comment', "#", :class => 'add-comment' unless call.comments.any? %>
+      <%= link_to timestamp(call.created_at), call %>
+    </div>
+
+    <div class="activity-comments" style="<%= 'display:none;' unless call.comments.any? %>">
+      <div class="comments">
+        <%= render call.comments %>
+      </div>
+
+      <div class="comment-item">
+        <div class="comment-image">
+          <%= image_tag(current_user.gravatar('40').gsub('http:',''), :width => 30, :height => 30) %>
+        </div>
+        <div class="comment-content">
+          <%= form_for([call, Comment.new], :remote => true) do |f| %>
+            <%= f.text_area :body, :class => 'comment form-control form-control-sm mb-1', :placeholder => "Write a comment..." %>
+            <%= f.submit 'Comment', :class => 'btn btn-primary btn-sm float-end', :disable_with => '...' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $(function() {
+    $('textarea').autoResize({extraSpace:0, animate:false});
+    $("abbr.timeago").timeago();
+    //$('.operator').twipsy({html: true});
+  });
+</script>

@@ -6,14 +6,14 @@
         <li class="nav-item"><%= link_to 'All', "#", :class => 'all-activities-link nav-link active' %></li>
         <li class="nav-item"><%= link_to 'Mine', "#", :class => 'my-activities-link nav-link' %></li>
       </ul>
-      <%= form_for(Activity.new, :remote => true) do |f| %>
-        <%= f.text_area :body, :class => 'activity-update form-control', :placeholder => 'Talk with the other hotline operators...' %>
+      <%= form_for(Call.new, :remote => true) do |f| %>
+        <%= f.text_area :notes, :class => 'activity-update form-control', :placeholder => 'Talk with the other hotline operators...' %>
         <%= f.submit 'Share', :class => 'btn btn-primary float-end' %>
       <% end %>
     </div>
 
     <div id="activities">
-      <%= render @activites %>
+      <%= render :partial => 'calls/call_discussion', :collection => @recentAnsweredCalls, as: :call %>
     </div>
   </div>
   <div class="col-12 col-sm-4">

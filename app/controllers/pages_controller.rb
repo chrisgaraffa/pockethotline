@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @activites = Activity.includes([:comments => :user]).includes(:user).limit(10)
+    @recentAnsweredCalls = Call.answered.includes([:comments => :user]).includes(:operator).limit(10)
     @operators = User.active
     @operators_oncall = User.active.select {|o| o.on_call?}
   end

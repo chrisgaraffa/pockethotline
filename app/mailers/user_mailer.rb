@@ -37,6 +37,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def new_comment(to, comment, link)
+    # TODO: Fix this and see CommentsController#save
     @link = link
     @comment = comment
     @activity = @comment.activity
@@ -46,6 +47,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def notify_admin_of_activity_post(activity, link)
+    # TODO: Is this used?
     @link = link
     @activity = activity
     mail :to => User.admin.collect(&:email),

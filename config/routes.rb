@@ -31,7 +31,9 @@ PocketHotline::Application.routes.draw do
   put 'share/update_widget' => "share#update_widget"
 
   resources :sessions
-  resources :calls
+  resources :calls do 
+    resources :comments
+  end
   resources :users do
     collection do
       get 'apply'
@@ -48,12 +50,6 @@ PocketHotline::Application.routes.draw do
         get 'all'
       end
     end
-    resources :calls, :only => [:index]
-    resources :activities, :only => [:index]
-  end
-
-  resources :activities, :only => [:create, :index, :show] do
-    resources :comments, :only => [:create]
   end
 
   resources :services # so i can do new_service_path
