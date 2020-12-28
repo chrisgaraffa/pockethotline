@@ -9,8 +9,8 @@ class Sponsor < ActiveRecord::Base
   validates :email, :presence => true, :email_format => true
   validates_numericality_of :amount, :greater_than => 4.99
 
-  scope :successful, where(:successful => true)
-  scope :minutes_remain, where('minutes_remaining > 0')
+  scope :successful, -> { where(:successful => true) }
+  scope :minutes_remain, -> { where('minutes_remaining > 0') }
 
   def to_param
     self.token
