@@ -2,10 +2,6 @@
   <div class="col-12 col-sm-8">
     <div class="clearfix widget">
       <h3 class="with-pill-nav">Hotline Activity</h3>
-      <ul class="nav nav-pills">
-        <li class="nav-item"><%= link_to 'All', "#", :class => 'all-activities-link nav-link active' %></li>
-        <li class="nav-item"><%= link_to 'Mine', "#", :class => 'my-activities-link nav-link' %></li>
-      </ul>
       <%= form_for(Call.new, :remote => true) do |f| %>
         <%= f.text_area :notes, :class => 'activity-update form-control', :placeholder => 'Talk with the other hotline operators...' %>
         <%= f.submit 'Share', :class => 'btn btn-primary float-end' %>
@@ -93,16 +89,6 @@
 </script>
 
 
-<script>
-  $(".my-activities-link").click(function() {
-    $('#activites').html(''); makeActiveTab($(this)); $.get('<%= user_activities_url(:current, :format => :js) %>');
-  })
-</script>
-<script>
-    $(".all-activities-link").click(function() {
-      $('#activites').html(''); makeActiveTab($(this)); $.get('<%= activities_url(:format => :js) %>');
-    });
-</script>
 <script>
   $(".on-call-operators-listing").click(function() {
     $(this).parents(".btn-group").find(".btn-primary").removeClass("btn-primary active").addClass("btn-outline-primary");

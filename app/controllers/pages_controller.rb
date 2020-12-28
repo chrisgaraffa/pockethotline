@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @recentAnsweredCalls = Call.answered.includes([:comments => :user]).includes(:operator).limit(10)
+    @recentAnsweredCalls = Call.answered.has_notes.order(:created_at => 'DESC').includes([:comments => :user]).includes(:operator).limit(10)
     @operators = User.active
     @operators_oncall = User.active.select {|o| o.on_call?}
   end
