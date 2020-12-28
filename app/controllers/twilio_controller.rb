@@ -29,7 +29,9 @@ class TwilioController < ApplicationController
 
     if @connect
       if @call.unanswered?
-        @call.update_attributes(:operator_id => params[:user_id], :answered_at => Time.now)
+        @call.operator_id = params[:user_id]
+        @call.answered_at = Time.now
+        @call.save
       else
         @already_answered = true
       end
@@ -39,10 +41,10 @@ class TwilioController < ApplicationController
   end
 
   def no_answer_or_completed
-    @call = Call.find_by_twilio_id(params[:CallSid]) if params[:CallSid]
+    @call = Call.where(:twilio_id => params[:CallSid]).first if params[:CallSid]
     if params[:DialCallStatus] == 'completed' || params[:DialCallStatus] == 'answered'
       if params[:CallSid] && params[:RecordingUrl] && params[:RecordingDuration]
-        @call.update_attributes(
+        @call.update(
           :twilio_recording_url => params[:RecordingUrl],
           :length => params[:RecordingDuration],
           :ended_at => Time.now
@@ -53,7 +55,7 @@ class TwilioController < ApplicationController
           @call.request_caller_review
         end
       end
-      render :text => '<?xml version="1.0" encoding="UTF-8"?><Response></Response>'
+      render xml: '<?xml version="1.0" encoding="UTF-8"?><Response></Response>'
     else
       # no answer
       render :action => :no_answer
