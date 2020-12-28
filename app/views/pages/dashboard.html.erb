@@ -58,24 +58,14 @@
     <div class="card mb-4">
       <div class="card-header">Recent Calls</div>
       <div class="card-body">
+        <div class="list-group">
         <% current_user.calls.limit(3).each do |call| %>
-          <div class="recent-call">
-            <a class="call-date" href="#<%# url_for(call) %>">
-              <div class="month"><%= call.created_at.strftime("%b")%></div>
-              <div class="day"><%= call.created_at.strftime("%e")%></div>
-            </a>
-            <div class="call-content">
-              <div class="call-row">
-                <span class="call-name">Call #<%= call.id %> <small><%= call.timecode %></small></span>
-              </div>
-              <div class="call-row">
-              </div>
-              <div class="call-row call-timestamp">
-                <%= call.created_at.strftime("%l:%M %p %Z") %>
-              </div>
-            </div>
-          </div>
+            <%= link_to call, :class => 'list-group-item list-group-item-action' do %>
+              <strong>#<%= call.id %></strong><br>
+              <%= call.created_at.strftime("%l:%M %p %Z") %> (<%= call.timecode %>)
+            <% end %>
         <% end %>
+        </div>
       </div>
       <div class="card-footer"><%= link_to 'View All', current_user.admin? ? calls_path : user_calls_path(:current) %></div>
     </div>
