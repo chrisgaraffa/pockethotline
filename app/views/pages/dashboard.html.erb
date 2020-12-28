@@ -2,8 +2,9 @@
   <div class="col-12 col-sm-8">
     <div class="clearfix widget">
       <h3 class="with-pill-nav">Hotline Activity</h3>
-      <%= form_for(Call.new, :remote => true) do |f| %>
-        <%= f.text_area :notes, :class => 'activity-update form-control', :placeholder => 'Talk with the other hotline operators...' %>
+      <%= form_with :url => calls_log_notes_path, :method => 'post', :local => true do |f| %>
+        <%= f.text_field :call_id, :class => 'form-control', :placeholder => 'Call #', :required => 'required' %><br>
+        <%= f.text_area :notes, :class => 'activity-update form-control', :placeholder => 'Add your notes', :value => flash[:call_notes], :required => 'required' %>
         <%= f.submit 'Share', :class => 'btn btn-primary float-end' %>
       <% end %>
     </div>

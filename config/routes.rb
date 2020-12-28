@@ -31,9 +31,11 @@ PocketHotline::Application.routes.draw do
   put 'share/update_widget' => "share#update_widget"
 
   resources :sessions
-  resources :calls do 
+  resources :calls do
     resources :comments
   end
+  post 'calls/log_notes'
+  
   resources :users do
     collection do
       get 'apply'
