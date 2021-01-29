@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_28_210824) do
+ActiveRecord::Schema.define(version: 2021_01_13_162013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2020_12_28_210824) do
     t.datetime "last_tweeted"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "callcategories", force: :cascade do |t|
+    t.string "name"
+    t.boolean "active"
+    t.integer "sort_order"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "callers", force: :cascade do |t|

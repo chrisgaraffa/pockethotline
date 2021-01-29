@@ -1,4 +1,5 @@
 PocketHotline::Application.routes.draw do
+  resources :callcategories
   root :to => "pages#index"
   get "volunteer", :to => "pages#volunteer"
   get "volunteers", :to => "pages#volunteers"

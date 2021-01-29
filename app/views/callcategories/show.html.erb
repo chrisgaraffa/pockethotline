@@ -1,0 +1,22 @@
+<p>
+  <strong>Name:</strong>
+  <%= @callcategory.name %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @callcategory.active %>
+</p>
+
+<p>
+  <strong>Sort order:</strong>
+  <%= @callcategory.sort_order %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @callcategory.description %>
+</p>
+
+<%= link_to 'Edit', edit_callcategory_path(@callcategory) %> |
+<%= link_to 'Back', callcategories_path %>

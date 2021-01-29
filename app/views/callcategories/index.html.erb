@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Call Categories</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Active</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @callcategories.each do |callcategory| %>
+      <tr>
+        <td><%= callcategory.name %></td>
+        <td><%= callcategory.active %></td>
+        <td><%= callcategory.description %></td>
+        <td>
+          <%= link_to edit_callcategory_path(callcategory) do %><span class="bi bi-pencil-square"></span><% end %>
+          <%= link_to callcategory, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <span class="bi bi-trash"></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Call Category', new_callcategory_path %>

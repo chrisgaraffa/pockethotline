@@ -1,0 +1,32 @@
+<%= form_with(model: callcategory) do |form| %>
+  <% if callcategory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(callcategory.errors.count, "error") %> prohibited this callcategory from being saved:</h2>
+
+      <ul>
+        <% callcategory.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, :class => 'control-label' %>
+    <%= form.text_field :name, :class => 'form-control', :required => 'required' %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :active, :class => 'form-check-input' %>
+    <%= form.label :active, :class => 'form-check-label' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description %>
+    <%= form.text_area :description, :class => 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit :value => 'Save', :class => 'btn btn-primary' %>
+  </div>
+<% end %>
