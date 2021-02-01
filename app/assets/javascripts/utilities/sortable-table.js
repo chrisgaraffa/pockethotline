@@ -12,7 +12,16 @@ targets.forEach(function(target) {
 				target.querySelectorAll('tbody tr').forEach(function(child) {
 					sortableIDs.push(child.getAttribute('data-elementid'));
 				});
-
+				fetch(target.getAttribute('data-apipoint') + '/reorder', {
+					method: 'POST',
+					cache: 'no-cache',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ids: sortableIDs})
+				  }).then(function(response) {
+					  console.log(response);
+				  });
 			}, 500);
 		});
 	}

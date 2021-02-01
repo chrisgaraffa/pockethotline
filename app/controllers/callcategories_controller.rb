@@ -45,6 +45,15 @@ class CallcategoriesController < ApplicationController
     redirect_to callcategories_url, notice: 'Callcategory was successfully destroyed.'
   end
 
+  # POST /callcategories/reorder
+  def reorder
+    params[:ids].each_with_index do |id, idx|
+      cat = Callcategory.find(id)
+      cat.sort_order = idx + 1
+			cat.save
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_callcategory

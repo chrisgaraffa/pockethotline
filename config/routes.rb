@@ -1,5 +1,5 @@
 PocketHotline::Application.routes.draw do
-  resources :callcategories
+  
   root :to => "pages#index"
   get "volunteer", :to => "pages#volunteer"
   get "volunteers", :to => "pages#volunteers"
@@ -73,6 +73,13 @@ PocketHotline::Application.routes.draw do
   get '/support', :to => 'sponsors#new'
 
   get "/c/:call_token", :to => "reviews#new"
+
+  resources :callcategories do
+    collection do
+      post 'reorder'
+    end
+  end
+  
 
   resources :reviews, :only => [:new, :create] do
     collection do
