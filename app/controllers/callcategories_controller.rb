@@ -3,7 +3,7 @@ class CallcategoriesController < ApplicationController
 
   # GET /callcategories
   def index
-    @callcategories = Callcategory.all
+    @callcategories = Callcategory.all.order(:sort_order)
   end
 
   # GET /callcategories/1
