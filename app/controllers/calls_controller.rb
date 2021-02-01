@@ -7,7 +7,7 @@ class CallsController < ApplicationController
 
     @user = find_user
     if current_user.admin? && !@user
-      @calls = Call
+      @calls = Call.all
     else
       @user = current_user
       @calls = @user.calls
@@ -16,6 +16,7 @@ class CallsController < ApplicationController
     @calls = @calls.includes(:caller).page(params[:page])
     date = params[:date].to_date rescue nil
     @calls = @calls.where('created_at >= ? and created_at <= ?', date.beginning_of_day, date.end_of_day) if date
+    @calls = @calls.order(:created_at)
   end
 
   def log_notes
