@@ -7,6 +7,9 @@
       <span class="activity-name"><%= call.operator.name %> <small><%= '@' + call.operator.twitter if call.operator.twitter.present? %></small></span> | #<%= call.id %>
     </div>
     <div class="activity-row">
+      <% if call.category.present? %><span class="activity-name">Category: </span> <%= call.category.name %></span><% end %>
+    </div>
+    <div class="activity-row">
       <div class="activity-text">
         <%= simple_format auto_link(call.notes) %>
       </div>

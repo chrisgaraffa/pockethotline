@@ -6,7 +6,7 @@ class Call < ActiveRecord::Base
   has_and_belongs_to_many :sponsors
   has_many :outgoing_calls
   has_one :review
-  belongs_to :callcategory
+  belongs_to :category, class_name: 'Callcategory', foreign_key: 'callcategory_id'
 
   has_many :comments, -> { order ('created_at ASC') }
 
