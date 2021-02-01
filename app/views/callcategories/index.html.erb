@@ -19,7 +19,7 @@
         <td><%= callcategory.active %></td>
         <td><%= callcategory.description %></td>
         <td>
-          <%= link_to '', toggle_active_callcategory_path(callcategory), {'class' => 'active-inactive-toggle bi-star' + (callcategory.active ? '-fill' : ''), 'data-elementid' => callcategory.id} %>
+          <%= link_to '', toggle_active_callcategory_path(callcategory), {'class' => 'active-inactive-toggle bi-star' + (callcategory.active ? '-fill' : ''), 'data-apipoint' => '/callcategories', 'data-elementid' => callcategory.id} %>
           <%= link_to edit_callcategory_path(callcategory) do %><span class="bi bi-pencil-square"></span><% end %>
           <%= link_to callcategory, method: :delete, data: { confirm: 'Are you sure?' } do %>
           <span class="bi bi-trash"></span>
