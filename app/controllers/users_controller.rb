@@ -2,6 +2,7 @@ require 'bcrypt'
 class UsersController < ApplicationController
   before_action :require_login, :except => [:set_password, :save_password, :apply, :apply_thanks, :create, :unsubscribe]
   before_action :require_admin, :only => [:index, :new, :destroy, :show, :approve]
+  before_action :find_user, :only => [:edit, :show, :toggle_status, :edit_on_call_status, :update, :destroy, :approve]
 
   def index
     @page_title = "Operators"
@@ -13,25 +14,19 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = find_user
     @page_title = @user.name
   end
 
   def show
-    @user = find_user
-
     @page_title = @user.name
 
     render :action => :edit
   end
 
   def edit_on_call_status
-    @user = find_user
   end
 
   def toggle_status
-    @user = find_user
-
     if !@user.toggle_status
       head :bad_request
     end
@@ -74,7 +69,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = find_user
     @user.user_updating_themselves = true
     if @user.update(user_params)
       if params[:user][:on_call] == '1'
@@ -93,7 +87,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.admin_creating_user = true
     @user.update_attributes!(:deleted_at => Time.now)
 
@@ -101,7 +94,6 @@ class UsersController < ApplicationController
   end
 
   def approve
-    @user = User.find(params[:id])
     @user.update_attribute(:pending_approval, false)
     UserMailer.welcome(@user).deliver
     redirect_to edit_user_path(@user), :notice => "User approved."
@@ -124,11 +116,7 @@ class UsersController < ApplicationController
 
   private
   def find_user
-    user = current_user
-    if current_user.admin? && params[:id] != 'current'
-      user = User.find(params[:id])
-    end
-    user
+    @user = User.find(params[:id])
   end
 
   def admin_creating_users
