@@ -1,9 +1,16 @@
 <div class="row">
   <div class="col-12 col-sm-8">
     <div class="clearfix widget">
-      <h3 class="with-pill-nav">Hotline Activity</h3>
+      <h3>Hotline Activity</h3>
       <%= form_with :url => calls_log_notes_path, :method => 'post', :local => true do |f| %>
-        <%= f.text_field :call_id, :class => 'form-control', :placeholder => 'Call #', :required => 'required' %><br>
+        <div class="row mb-2">
+          <div class="col-12 col-sm-6">
+            <%= f.text_field :call_id, :class => 'form-control', :placeholder => 'Call #', :required => 'required' %>
+          </div>
+          <div class="col-12 col-sm-6">
+            <%= f.select :callcategory_id, Callcategory.order(:sort_order).collect { |c| [c.name, c.id] }, { include_blank: 'Category' }, :class => 'form-control', :required => 'required' %>
+          </div>
+        </div>
         <%= f.text_area :notes, :class => 'activity-update form-control', :placeholder => 'Add your notes', :value => flash[:call_notes], :required => 'required' %>
         <%= f.submit 'Share', :class => 'btn btn-primary float-end' %>
       <% end %>

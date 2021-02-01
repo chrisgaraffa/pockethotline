@@ -25,6 +25,7 @@ class CallsController < ApplicationController
       redirect_to dashboard_path, :alert => "That call number doesn't exist." and return
     end
     @call.notes = params[:notes]
+    @call.callcategory_id = params[:callcategory_id]
 
     respond_to do |format|
       if @call.save
