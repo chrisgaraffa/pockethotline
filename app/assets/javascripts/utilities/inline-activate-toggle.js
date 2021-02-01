@@ -8,7 +8,7 @@ function initActivateTargets() {
 
 			el.addEventListener('click', function(e) {
 				e.preventDefault();
-				var response = fetch(el.getAttribute('data-apipoint') + '/' + el.getAttribute('data-elementid') + '/toggle_active', {
+				fetch(el.getAttribute('data-apipoint') + '/' + el.getAttribute('data-elementid') + '/toggle_active', {
 					method: 'PATCH',
 					cache: 'no-cache',
 				}).then(response => response.json())
@@ -22,9 +22,8 @@ function initActivateTargets() {
 					}
 				})
 				.catch((error) => {
-				  console.error('Error:', error);
+					console.error('Error:', error);
 				});
-				
 			});
 	});
 

@@ -52,6 +52,11 @@ class CallcategoriesController < ApplicationController
       cat.sort_order = idx + 1
 			cat.save
     end
+
+    respond_to do |format|
+      format.json { render :json => Callcategory.all.order(:sort_order).select(:id, :sort_order).to_json }
+      format.html { redirect_to callcategories_url, :alert => "The categories were reordered" }
+    end
   end
 
   # PATCH /callcategories/1/toggle_active
