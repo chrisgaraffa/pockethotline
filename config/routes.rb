@@ -78,6 +78,9 @@ PocketHotline::Application.routes.draw do
     collection do
       post 'reorder'
     end
+    member do
+      patch 'toggle_active'
+    end
   end
   
 

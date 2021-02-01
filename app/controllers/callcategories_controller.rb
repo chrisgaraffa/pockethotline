@@ -1,5 +1,5 @@
 class CallcategoriesController < ApplicationController
-  before_action :set_callcategory, only: [:show, :edit, :update, :destroy]
+  before_action :set_callcategory, only: [:show, :edit, :update, :destroy, :toggle_active]
 
   # GET /callcategories
   def index
@@ -52,6 +52,23 @@ class CallcategoriesController < ApplicationController
       cat.sort_order = idx + 1
 			cat.save
     end
+  end
+
+  # PATCH /callcategories/1/toggle_active
+  def toggle_active
+    if @callcategory.active
+      @callcategory.active = false
+    else
+      @callcategory.active = true
+    end
+    @callcategory.save
+
+    respond_to do |format|
+      format.json { render :json => @callcategory.to_json }
+      format.html { redirect_to dashboard_path, :alert => "The category was updated." }
+    end
+
+    
   end
 
   private
