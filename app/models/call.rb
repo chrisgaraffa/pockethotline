@@ -1,4 +1,7 @@
 class Call < ActiveRecord::Base
+  self.implicit_order_column = :created_at
+
+
   belongs_to :account
   belongs_to :caller
   belongs_to :operator, :class_name => 'User'
