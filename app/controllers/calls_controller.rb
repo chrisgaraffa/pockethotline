@@ -3,6 +3,8 @@ class CallsController < ApplicationController
   # before_action :require_admin
 
   def index
+    @page_title = "Calls"
+
     @user = find_user
     if current_user.admin? && !@user
       @calls = Call

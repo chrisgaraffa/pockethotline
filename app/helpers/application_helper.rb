@@ -1,6 +1,6 @@
 module ApplicationHelper
   def page_title
-    
+    @page_title
   end
 
   def active_button_class(button)

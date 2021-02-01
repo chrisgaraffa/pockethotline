@@ -3,10 +3,12 @@ class OncallSchedulesController < ApplicationController
   before_action :require_admin, :only => [:all]
 
   def all
+    @page_title = "Operator Schedules"
   end
 
   def index
     @user = find_user
+    @page_title = @user.name + "'s Schedule" #TODO: Possessivize helper
     @oncall_schedules = []
     @oncall_schedules += @user.oncall_schedules
     (1..7).each do |i|

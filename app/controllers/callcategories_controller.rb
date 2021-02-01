@@ -3,20 +3,25 @@ class CallcategoriesController < ApplicationController
 
   # GET /callcategories
   def index
+    @page_title = 'Call Categories'
     @callcategories = Callcategory.all.order(:sort_order)
   end
 
   # GET /callcategories/1
   def show
+    @page_title = @callcategory.name + " (Call Category)"
+    @page_title = @callcategory.name
   end
 
   # GET /callcategories/new
   def new
+    @page_title = "New Call Category"
     @callcategory = Callcategory.new
   end
 
   # GET /callcategories/1/edit
   def edit
+    @page_title = @callcategory.name + " (Call Category)"
   end
 
   # POST /callcategories

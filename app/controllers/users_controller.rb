@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :require_admin, :only => [:index, :new, :destroy, :show, :approve]
 
   def index
+    @page_title = "Operators"
+
     @users = User.order('name').active.includes(:oncall_schedules)
     @users = @users.paginate(:page => params[:page])
 
@@ -12,10 +14,13 @@ class UsersController < ApplicationController
 
   def edit
     @user = find_user
+    @page_title = @user.name
   end
 
   def show
     @user = find_user
+
+    @page_title = @user.name
 
     render :action => :edit
   end
@@ -52,6 +57,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    @page_title = "New Operator"
     @user = User.new
   end
 
