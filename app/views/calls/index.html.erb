@@ -17,6 +17,9 @@
         </th>
       <% end %>
       <th>
+        Category
+      </th>
+      <th>
         Call Time
       </th>
       <th>
@@ -36,6 +39,7 @@
             <%= number_to_phone(call.caller.phone.gsub('+1', '')) if call.caller && call.caller.phone %>
           </td>
         <% end %>
+        <td><%= call.category.name if call.category.present? %>
         <td>
           <%= call.started_at.strftime("%D %l:%M %p %Z") %>
         </td>
