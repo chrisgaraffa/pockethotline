@@ -1,5 +1,6 @@
 PocketHotline::Application.routes.draw do
   
+  devise_for :users
   root :to => "pages#index"
   get "volunteer", :to => "pages#volunteer"
   get "volunteers", :to => "pages#volunteers"
