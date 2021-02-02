@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable, :lockable,
          :timeoutable
+
+         def self.available_to_take_calls(something)
+          []
+         end
 end

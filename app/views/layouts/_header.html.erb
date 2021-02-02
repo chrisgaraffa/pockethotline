@@ -7,7 +7,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
         <% unless logged_in? %>
-          <li class="nav-item"><%= active_link_to 'Join', join_path, :class => 'nav-link' %></li>
+          <%
+=begin%>
+ <li class="nav-item"><%= active_link_to 'Join', join_path, :class => 'nav-link' %></li> 
+<%
+=end%>
           <li class="nav-item"><%= active_link_to 'Support', support_path, :class => 'nav-link' %></li>
         <% end %>
         <% if logged_in? %>
@@ -41,7 +45,11 @@
               })
             </script>
             <% else %>
-              <%= active_link_to 'Sign in', login_path, :class=> 'nav-link' %>
+              <%
+=begin%>
+ <%= active_link_to 'Sign in', login_path, :class=> 'nav-link' %> 
+<%
+=end%>
             <% end %>
             
         </li>

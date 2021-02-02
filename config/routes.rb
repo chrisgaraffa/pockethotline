@@ -1,6 +1,8 @@
 PocketHotline::Application.routes.draw do
   
   devise_for :users
+
+  
   root :to => "pages#index"
   get "volunteer", :to => "pages#volunteer"
   get "volunteers", :to => "pages#volunteers"
@@ -17,10 +19,10 @@ PocketHotline::Application.routes.draw do
   post "twilio/finish", :as => :twilio_finish
   post "twilio/caller_review", :as => :twilio_caller_review
 
-  delete "logout" => "sessions#destroy"
-  get "login" => "sessions#new"
-  get "forgot_password" => "sessions#forgot_password", :as => "forgot_password"
-  post "request_password_reset" => "sessions#request_password_reset", :as => "request_password_reset"
+#  delete "logout" => "sessions#destroy"
+#  get "login" => "sessions#new"
+#  get "forgot_password" => "sessions#forgot_password", :as => "forgot_password"
+#  post "request_password_reset" => "sessions#request_password_reset", :as => "request_password_reset"
 
   #get 'join' => "users#apply", :as => 'join'
   #get "set-password/:token" => "users#set_password", :as => "set_password"
@@ -32,7 +34,7 @@ PocketHotline::Application.routes.draw do
   get 'share' => "share#widget"
   put 'share/update_widget' => "share#update_widget"
 
-  resources :sessions
+  #resources :sessions
   resources :calls do
     resources :comments
   end

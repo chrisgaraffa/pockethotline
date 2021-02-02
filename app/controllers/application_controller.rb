@@ -34,9 +34,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?, :admin?, :sponsors_active?, :sponsors_images?
 
-  def current_user
-    @current_user ||= User.authenticate_from_cookie(cookies[:remember_me_id], cookies[:remember_me_password_hash])
-  end
+  #def current_user
+  #  @current_user ||= User.authenticate_from_cookie(cookies[:remember_me_id], cookies[:remember_me_password_hash])
+  #end
 
   def logged_in?
     current_user.present?
