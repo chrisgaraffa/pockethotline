@@ -4,9 +4,6 @@ PocketHotline::Application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :users
-  #get '/users/', to: 'users#index'
-
   root :to => "pages#index"
 
 
@@ -34,7 +31,7 @@ PocketHotline::Application.routes.draw do
   #get "set-password/:token" => "users#set_password", :as => "set_password"
   #get 'unsubscribe/:token' => 'users#unsubscribe', :as => "unsubscribe"
 
-  #get 'settings' => 'users#edit', :id => 'current'
+  get 'settings' => 'users#edit', :id => 'current'
 
   get 'widget' => "share#widget"
   get 'share' => "share#widget"
@@ -46,23 +43,23 @@ PocketHotline::Application.routes.draw do
   end
   post 'calls/log_notes'
   
-  # resources :users do
-  #   collection do
-  #     get 'apply'
-  #     get 'apply_thanks'
-  #   end
-  #   member do
-  #     post 'toggle_status'
-  #     get 'edit_on_call_status'
-  #     post 'approve'
-  #     put 'save_password'
-  #   end
-  #   resources :oncall_schedules, :only => [:index, :create] do
-  #     collection do
-  #       get 'all'
-  #     end
-  #   end
-  # end
+  resources :users do
+    collection do
+      #get 'apply'
+      #get 'apply_thanks'
+    end
+    member do
+      post 'toggle_status'
+      get 'edit_on_call_status'
+      #post 'approve'
+      #put 'save_password'
+    end
+    resources :oncall_schedules, :only => [:index, :create] do
+      collection do
+        get 'all'
+      end
+    end
+  end
 
   resources :services # so i can do new_service_path
 

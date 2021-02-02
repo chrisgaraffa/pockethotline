@@ -72,7 +72,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.user_updating_themselves = true
     if @user.update(user_params)
       if params[:user][:on_call] == '1'
         @user.toggle_status(:on)
@@ -105,12 +104,9 @@ class UsersController < ApplicationController
   def unsubscribe
     @user = User.find_by_token!(params[:token])
     update = {
-      :newsletter_emails => false,
       :schedule_emails => false,
-      :volunteers_first_availability_emails => false,
-      :user_updating_themselves => true
+      :volunteers_first_availability_emails => false
     }
-    update.delete(:newsletter_emails) if (params[:only] == 'schedule' || params[:only] == 'volunteers_first_availability_emails')
     update.delete(:schedule_emails) if (params[:only] == 'newsletter' || params[:only] == 'volunteers_first_availability_emails')
     update.delete(:volunteers_first_availability_emails) if (params[:only] == 'schedule' || params[:only] == 'newsletter')
     @user.update_attributes!(update)
@@ -149,6 +145,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :phone, :twitter, :bio, :newsletter_emails, :schedule_emails, :volunteers_first_availability_emails)
+    params.require(:user).permit(:name, :email, :phone, :twitter, :bio, :schedule_emails, :volunteers_first_availability_emails)
   end
 end

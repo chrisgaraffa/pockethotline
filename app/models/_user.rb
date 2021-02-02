@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   scope :have_logged_in, -> { where('password_hash is not ?', nil) }
   scope :have_not_logged_in, -> { where(:password_hash => nil) }
   scope :admin, -> { where(:admin => true) }
-  scope :receive_newsletters, -> { where(:newsletter_emails => true) }
+  
   scope :receive_volunteers_first_availability, -> { where(:volunteers_first_availability_emails => true) }
   scope :has_phone, -> { where('phone is not ?', nil).where('phone != ?', "") }
 

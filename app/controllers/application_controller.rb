@@ -34,10 +34,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?, :admin?, :sponsors_active?, :sponsors_images?
 
-  #def current_user
-  #  @current_user ||= User.authenticate_from_cookie(cookies[:remember_me_id], cookies[:remember_me_password_hash])
-  #end
-
   def logged_in?
     current_user.present?
   end
@@ -50,14 +46,8 @@ class ApplicationController < ActionController::Base
     session[:return_to] = request.fullpath
   end
 
-  def login(user)
-    cookies.permanent[:remember_me_id] = user.id,
-    cookies.permanent[:remember_me_password_hash] = user.password_hash
-  end
-
-  def logout
-    cookies.delete :remember_me_id
-    cookies.delete :remember_me_password_hash
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || dashboard_path
   end
 
   def sponsors_active?

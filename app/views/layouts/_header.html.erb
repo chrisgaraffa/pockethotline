@@ -40,16 +40,12 @@
             <script type="text/javascript">
               $(document).ready(function() {
                 $('.on-call-toggle .btn').click(function() {
-                  jQuery.post('oggle_status_user_path(current_user)');
+                  jQuery.post('<%= toggle_status_user_path(current_user) %>');
                 })
               })
             </script>
             <% else %>
-              <%
-=begin%>
- <%= active_link_to 'Sign in', login_path, :class=> 'nav-link' %> 
-<%
-=end%>
+            <%= active_link_to 'Sign in', new_user_session_path, :class=> 'nav-link' %> 
             <% end %>
             
         </li>
