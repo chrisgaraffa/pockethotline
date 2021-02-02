@@ -1,9 +1,14 @@
 PocketHotline::Application.routes.draw do
   
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
 
-  
+  get '/users/', to: 'users#index'
+
   root :to => "pages#index"
+
+
   get "volunteer", :to => "pages#volunteer"
   get "volunteers", :to => "pages#volunteers"
   get 'dashboard' => "pages#dashboard", :as => 'dashboard'
