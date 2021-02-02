@@ -24,14 +24,22 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :email_format => true
 
   scope :on_call, -> { where(:on_call => true) }
-  scope :active, -> { where(:deleted_at => nil).where(:pending_approval => false) }
-  scope :pending, -> { where(:pending_approval => true).where(:deleted_at => nil) }
+  scope :active, -> { where(:deleted_at => nil).where(:approved => true) }
+  scope :pending, -> { where(:approved => false).where(:deleted_at => nil) }
   scope :have_logged_in, -> { where('password_hash is not ?', nil) }
   scope :have_not_logged_in, -> { where(:password_hash => nil) }
   scope :admin, -> { where(:admin => true) }
   
   scope :receive_volunteers_first_availability, -> { where(:volunteers_first_availability_emails => true) }
   scope :has_phone, -> { where('phone is not ?', nil).where('phone != ?', "") }
+
+  def active_for_authentication?
+    super && approved?
+  end
+
+  def inactive_messagge
+    approved? ? super : :not_approved
+  end
 
   def total_points
     reviews.select {|c| c.award_point_to_operator? }.length
