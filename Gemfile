@@ -22,6 +22,8 @@ gem 'mime-types', '~> 3.3'
 gem 'rest-client', '~> 2.1'
 gem 'active_link_to'
 
+gem 'devise'
+
 group :assets do
   #gem 'less'
   gem 'sass-rails'
