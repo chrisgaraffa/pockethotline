@@ -84,27 +84,6 @@ class User < ActiveRecord::Base
   end
   private :go_off_call
 
-  # def self.authenticate(email, password)
-  #   user = User.active.find_by_email(email)
-  #   begin # if user hasn't set their password yet, we'll get a BCrypt::Errors::InvalidHash error
-  #     if user && BCrypt::Password.new(user.password_hash) == password
-  #       user
-  #     else
-  #       nil
-  #     end
-  #   rescue BCrypt::Errors::InvalidHash
-  #     nil
-  #   end
-  # end
-
-  # def self.authenticate_from_cookie(id=nil, password_hash=nil)
-  #   if id && password_hash
-  #     User.active.find_by_id_and_password_hash(id, password_hash)
-  #   else
-  #     nil
-  #   end
-  # end
-
   def deactivate
     self.update_attribute(:deleted_at, Time.now)
   end
@@ -160,23 +139,5 @@ class User < ActiveRecord::Base
     hash = Digest::MD5.hexdigest(email.downcase)
 
     image_src = "http://www.gravatar.com/avatar/#{hash}?s=#{size}"
-  end
-
-  private
-  # def encrypt_password
-  #   if password.present?
-  #     self.password_hash = BCrypt::Password.create(password)
-  #   end
-  # end
-
-  # def no_password_required
-  #   admin_creating_user || user_applying || user_updating_themselves || skip_password_validation
-  # end
-
-  def set_token
-    self.token = BCrypt::Engine.generate_salt
-    while User.find_by_token(self.token)
-      self.token = BCrypt::Engine.generate_salt
-    end
   end
 end

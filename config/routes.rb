@@ -1,5 +1,5 @@
 PocketHotline::Application.routes.draw do
-  
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -23,37 +23,20 @@ PocketHotline::Application.routes.draw do
   post "twilio/finish", :as => :twilio_finish
   post "twilio/caller_review", :as => :twilio_caller_review
 
-#  delete "logout" => "sessions#destroy"
-#  get "login" => "sessions#new"
-#  get "forgot_password" => "sessions#forgot_password", :as => "forgot_password"
-#  post "request_password_reset" => "sessions#request_password_reset", :as => "request_password_reset"
-
-  #get 'join' => "users#apply", :as => 'join'
-  #get "set-password/:token" => "users#set_password", :as => "set_password"
-  #get 'unsubscribe/:token' => 'users#unsubscribe', :as => "unsubscribe"
-
   get 'settings' => 'users#edit', :id => 'current'
 
   get 'widget' => "share#widget"
   get 'share' => "share#widget"
   put 'share/update_widget' => "share#update_widget"
-
-  #resources :sessions
   resources :calls do
     resources :comments
   end
   post 'calls/log_notes'
   
   resources :users do
-    collection do
-      #get 'apply'
-      #get 'apply_thanks'
-    end
     member do
       post 'toggle_status'
       get 'edit_on_call_status'
-      #post 'approve'
-      #put 'save_password'
     end
     resources :oncall_schedules, :only => [:index, :create] do
       collection do
