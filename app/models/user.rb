@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
   scope :on_call, -> { where(:on_call => true) }
   scope :active, -> { where(:deleted_at => nil).where(:approved => true) }
   scope :pending, -> { where(:approved => false).where(:deleted_at => nil) }
-  scope :have_logged_in, -> { where('password_hash is not ?', nil) }
-  scope :have_not_logged_in, -> { where(:password_hash => nil) }
+  scope :have_logged_in, -> { where('last_sign_in_at IS NOT ?', nil) } 
+  scope :have_not_logged_in, -> { where(:last_sign_in_at => nil) }
   scope :admin, -> { where(:admin => true) }
   
   scope :receive_volunteers_first_availability, -> { where(:volunteers_first_availability_emails => true) }
