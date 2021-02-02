@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: pockethotline_devise
+  database: pockethotline
   username: chris
   password: 
