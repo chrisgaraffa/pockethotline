@@ -14,7 +14,10 @@ class UsersController < ApplicationController
   end
 
   def edit
+    puts "editing"
     @page_title = @user.name
+
+    render :action => :edit
   end
 
   def show

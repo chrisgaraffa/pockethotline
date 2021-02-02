@@ -4,7 +4,8 @@ PocketHotline::Application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  get '/users/', to: 'users#index'
+  resources :users
+  #get '/users/', to: 'users#index'
 
   root :to => "pages#index"
 
