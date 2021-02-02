@@ -8,5 +8,6 @@ class AddCustomUserFields < ActiveRecord::Migration[6.1]
     add_column :users, :pending_approval, :boolean, :default => false
     add_column :users, :volunteers_first_availability_emails, :boolean, :default => true
     add_column :users, :admins_notified_of_first_availability_at, :timestamp
+    add_column :users, :name, :string
   end
 end

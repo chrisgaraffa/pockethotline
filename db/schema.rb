@@ -205,6 +205,7 @@ ActiveRecord::Schema.define(version: 2021_02_02_003447) do
     t.boolean "pending_approval", default: false
     t.boolean "volunteers_first_availability_emails", default: true
     t.datetime "admins_notified_of_first_availability_at"
+    t.string "name"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
