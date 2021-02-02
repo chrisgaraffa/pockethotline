@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_02_003447) do
+ActiveRecord::Schema.define(version: 2021_02_02_135606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(version: 2021_02_02_003447) do
     t.boolean "admin", default: false
     t.text "bio"
     t.boolean "schedule_emails", default: true
-    t.boolean "pending_approval", default: false
+    t.boolean "approved", default: false
     t.boolean "volunteers_first_availability_emails", default: true
     t.datetime "admins_notified_of_first_availability_at"
     t.string "name"
