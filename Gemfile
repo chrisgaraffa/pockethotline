@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
 
-ruby '2.7.2'
+ruby '3.0.0'
 gem 'rails', '~> 6.1.0'
 gem 'jquery-rails'
 gem 'pg', '~> 1.0'
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'phone-validator', '~> 0.0.2'
 gem 'twilio-ruby', "~> 5.45.0"
 gem 'aws-sdk-s3', '~> 1'
@@ -13,7 +13,7 @@ gem 'cocaine', '0.3.2' # required for paperclip version
 gem 'delayed_job', '~> 4.1.9'
 gem 'delayed_job_active_record', '~> 4.1.5'
 gem 'rails_autolink'
-gem 'will_paginate', '~> 3.0.4'
+gem 'will_paginate', '~> 3.1.0'
 gem 'twitter', '~> 7.0.0'
 gem 'stripe', '~> 5'
 gem 'unicorn'
